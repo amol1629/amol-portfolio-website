@@ -46,15 +46,7 @@ export default function Experience() {
 									? "0.4rem solid #9ca3af"
 									: "0.4rem solid rgba(255, 255, 255, 0.5)",
 						}}
-						date={
-							<motion.div
-								initial={{ opacity: 0 }}
-								animate={{ opacity: 1 }}
-								transition={{ duration: 0.5 }}
-							>
-								{item.date}
-							</motion.div>
-						}
+						date={item?.date}
 						icon={
 							<motion.div
 								initial={{ scale: 0 }}
