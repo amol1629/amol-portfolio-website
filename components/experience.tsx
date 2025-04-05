@@ -53,7 +53,7 @@ export default function Experience() {
 								animate={{ scale: 1 }}
 								transition={{ duration: 0.5 }}
 							>
-								{item.icon}
+								{item.icon}	
 							</motion.div>
 						}
 						iconStyle={{

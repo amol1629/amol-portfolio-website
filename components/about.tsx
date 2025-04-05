@@ -21,7 +21,7 @@ export default function About() {
 			<p className="mb-3">
 				Seeking a{" "}
 				<span className="font-medium">Front-End Developer</span>{" "}
-				position in the Information Technology industry, leveraging
+				position in the IT industry, leveraging
 				expertise in{" "}
 				<span className="font-medium">
 					JavaScript, React, and Next.js
