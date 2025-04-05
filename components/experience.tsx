@@ -20,7 +20,7 @@ export default function Experience() {
 		<section
 			id="experience"
 			ref={ref}
-			className="scroll-mt-28 mb-28 sm:mb-40 rounded-2xl bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-700 shadow-lg p-6"
+			className="scroll-mt-28 mb-28 sm:mb-40 rounded-2xl bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-700 shadow-lg p-12	"
 		>
 			<SectionHeading>My Experience</SectionHeading>
 			<VerticalTimeline lineColor="">

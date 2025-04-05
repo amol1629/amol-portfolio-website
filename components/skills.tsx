@@ -75,7 +75,7 @@ export default function Skills() {
 		<section
 			id="skills"
 			ref={ref}
-			className="mb-28 max-w-4xl mx-auto px-6 scroll-mt-28 text-center sm:mb-40 rounded-2xl bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-700 shadow-lg p-6"
+			className="mb-28 max-w-4xl mx-auto px-6 scroll-mt-28 text-center sm:mb-40 rounded-2xl bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-700 shadow-lg p-12"
 		>
 			<SectionHeading>My Skills</SectionHeading>
 			<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left mt-6">

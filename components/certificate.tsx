@@ -9,6 +9,16 @@ import Image from "next/image";
 
 const certificatesData = [
 	{
+		name: "JavaScript (Intermediate) Certificate",
+		link: "https://www.hackerrank.com/certificates/bb858e7f1890",
+		image: "/images/javascript.png",
+	},
+	{
+		name: "TypeScript for Professionals - by Basarat",
+		link: "https://www.udemy.com/certificate/UC-8f352c7f-2206-4a47-b690-eff0a09a1ff2/",
+		image: "/images/typescript-professionals.jpg",
+	},
+	{
 		name: "React Training for JavaScript Beginners",
 		link: "https://www.udemy.com/certificate/UC-f723eddd-ebea-4938-862d-8f591463c217/",
 		image: "/images/react-training.jpg",
@@ -18,6 +28,12 @@ const certificatesData = [
 		link: "https://www.udemy.com/certificate/UC-3852aed2-4bd1-4992-b4f3-a8832b681815/",
 		image: "/images/nextjs-bootcamp.jpg",
 	},
+	{
+		name: "Rest API (Intermediate) Certificate",
+		link: "https://www.hackerrank.com/certificates/fb47322d7431",
+		image: "/images/rest-api.png",
+	},
+
 	{
 		name: "Tailwind CSS - A New Way To Think",
 		link: "https://www.udemy.com/certificate/UC-510ec8e9-2810-4c10-a93a-f1c16664696a/",
@@ -40,7 +56,7 @@ export default function Certificates() {
 			className="mb-28 max-w-4xl mx-auto px-6 scroll-mt-28 text-center sm:mb-40 rounded-2xl bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-700 shadow-lg p-6"
 		>
 			<SectionHeading>My Certificates</SectionHeading>
-			<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+			<div className="grid grid-cols-1 sm:grid-cols-2 gap-12 mt-6">
 				{certificatesData.map((certificate, index) => (
 					<motion.div
 						key={index}
@@ -65,7 +81,7 @@ export default function Certificates() {
 								href={certificate.link}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="inline-block mt-2 px-6 py-3 text-sm font-medium text-white bg-gray-900 dark:bg-gray-700 rounded-full hover:bg-gray-700 dark:hover:bg-gray-600 transition"
+								className="inline-block mt-2 px-6 py-3 text-sm font-medium text-white  bg-gray-900 dark:bg-gray-700 rounded-full hover:bg-gray-700 dark:hover:bg-gray-600 dark:hover:border dark:hover:border-white transition-all duration-300 ease-in-out"
 							>
 								View Certificate
 							</Link>

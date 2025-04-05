@@ -32,7 +32,7 @@ export default function Intro() {
 					>
 						<Image
 							src="/profile_photo.jpeg"
-							alt="Ricardo portrait"
+							alt="Amol portrait"
 							width="192"
 							height="192"
 							quality="95"
