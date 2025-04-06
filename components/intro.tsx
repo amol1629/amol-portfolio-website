@@ -10,9 +10,20 @@ import { FaGithubSquare } from "react-icons/fa";
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
 
-const Typewriter = ({ text, delay = 30 }) => {
+interface TypewriterProps {
+	text: string;
+	delay?: number;
+}
+
+const Typewriter: React.FC<TypewriterProps> = ({ text, delay = 30 }) => {
 	const [displayedText, setDisplayedText] = useState("");
 	const [currentIndex, setCurrentIndex] = useState(0);
+
+	useEffect(() => {
+		// Reset state when text changes
+		setDisplayedText("");
+		setCurrentIndex(0);
+	}, [text]);
 
 	useEffect(() => {
 		if (currentIndex < text.length) {
@@ -28,10 +39,12 @@ const Typewriter = ({ text, delay = 30 }) => {
 	return <>{displayedText}</>;
 };
 
-const FloatingParticles = () => {
+// Simplified floating particles
+const FloatingParticles: React.FC = () => {
+	// Reduced number of particles from 8 to 4
 	return (
 		<>
-			{[...Array(8)].map((_, i) => (
+			{[...Array(4)].map((_, i) => (
 				<motion.div
 					key={i}
 					className="absolute rounded-full bg-blue-400/20 dark:bg-cyan-400/20"
@@ -50,10 +63,10 @@ const FloatingParticles = () => {
 						scale: [0.5, 1.2, 0.8],
 					}}
 					transition={{
-						duration: Math.random() * 10 + 10,
+						duration: Math.random() * 10 + 15, // Slower animation
 						repeat: Infinity,
 						ease: "easeInOut",
-						delay: i * 0.5,
+						delay: i * 1,
 					}}
 				/>
 			))}
@@ -65,7 +78,6 @@ export default function Intro() {
 	const { ref } = useSectionInView("Home", 0.5);
 	const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 	const controls = useAnimation();
-	const [hoveredButton, setHoveredButton] = useState(null);
 
 	const phrases = [
 		"Front-end developer",
@@ -79,9 +91,10 @@ export default function Intro() {
 		const cyclePhrases = () => {
 			setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
 		};
+
 		const interval = setInterval(cyclePhrases, 3000);
 		return () => clearInterval(interval);
-	}, []);
+	}, [phrases.length]);
 
 	useEffect(() => {
 		controls.start({
@@ -97,57 +110,33 @@ export default function Intro() {
 			id="home"
 			className="relative mb-4 max-w-[60rem] text-center sm:mb-0 scroll-mt-[100rem] px-4 py-8 md:px-6 md:py-12 lg:px-8 lg:py-16 overflow-hidden"
 		>
-			{/* Animated Background Elements */}
+			{/* Simplified Background Elements */}
 			<div className="absolute inset-0 -z-10 overflow-hidden">
-				<div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-300/10 dark:bg-blue-500/10 rounded-full filter blur-3xl animate-float-slow" />
-				<div className="absolute top-3/4 right-1/4 w-72 h-72 bg-purple-300/10 dark:bg-purple-500/10 rounded-full filter blur-3xl animate-float-medium" />
+				<div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-300/10 dark:bg-blue-500/10 rounded-full filter blur-3xl" />
+				<div className="absolute top-3/4 right-1/4 w-72 h-72 bg-purple-300/10 dark:bg-purple-500/10 rounded-full filter blur-3xl" />
 				<FloatingParticles />
 			</div>
 
-			{/* Profile Image with Holographic Effect */}
+			{/* Profile Image with Simpler Effect */}
 			<motion.div
 				className="flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-10"
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
-				transition={{ duration: 1 }}
+				transition={{ duration: 0.8 }}
 			>
 				<div className="relative">
 					<motion.div
-						initial={{ opacity: 0, scale: 0 }}
+						initial={{ opacity: 0, scale: 0.8 }}
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{
 							type: "spring",
-							stiffness: 150,
-							duration: 0.6,
+							stiffness: 100,
+							duration: 0.5,
 						}}
 					>
 						<div className="relative h-32 w-32 sm:h-40 sm:w-40 md:h-48 md:w-48">
-							{/* Holographic rings */}
-							<motion.div
-								className="absolute inset-0 rounded-full border-2 border-blue-400/30 dark:border-cyan-400/30"
-								animate={{
-									scale: [1, 1.1, 1],
-									opacity: [0.5, 0.8, 0.5],
-								}}
-								transition={{
-									duration: 4,
-									repeat: Infinity,
-									ease: "easeInOut",
-								}}
-							/>
-							<motion.div
-								className="absolute inset-0 rounded-full border-2 border-blue-400/20 dark:border-cyan-400/20"
-								animate={{
-									scale: [1, 1.2, 1],
-									opacity: [0.3, 0.6, 0.3],
-								}}
-								transition={{
-									duration: 6,
-									repeat: Infinity,
-									ease: "easeInOut",
-									delay: 1,
-								}}
-							/>
+							{/* Simplified ring effect */}
+							<div className="absolute inset-0 rounded-full border-2 border-blue-400/30 dark:border-cyan-400/30" />
 
 							<Image
 								src="/profile_photo.jpeg"
@@ -156,7 +145,7 @@ export default function Intro() {
 								height="192"
 								quality="95"
 								priority={true}
-								className="h-full w-full rounded-full object-cover border-[3px] border-white/20 dark:border-white/30 shadow-lg dark:shadow-gray-800/50 backdrop-blur-sm"
+								className="h-full w-full rounded-full object-cover border-[3px] border-white/20 dark:border-white/30 shadow-lg"
 							/>
 						</div>
 					</motion.div>
@@ -166,27 +155,11 @@ export default function Intro() {
 						initial={{ opacity: 0, scale: 0 }}
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{
-							type: "spring",
-							stiffness: 150,
 							delay: 0.2,
-							duration: 0.8,
+							duration: 0.5,
 						}}
 					>
-						<motion.div
-							animate={{
-								rotate: [0, 10, -10, 0],
-							}}
-							transition={{
-								duration: 2,
-								repeat: Infinity,
-								repeatType: "reverse",
-							}}
-						>
-							<div className="relative">
-								<div className="absolute inset-0 bg-blue-400 dark:bg-cyan-500 rounded-full blur-sm animate-ping opacity-30" />
-								<span className="relative z-10">👋</span>
-							</div>
-						</motion.div>
+						<span className="relative z-10">👋</span>
 					</motion.span>
 				</div>
 			</motion.div>
@@ -194,11 +167,11 @@ export default function Intro() {
 			{/* Animated Typography with Typewriter Effect */}
 			<motion.div
 				className="mb-10 mt-6 px-2 text-xl sm:text-2xl md:text-3xl font-medium leading-tight sm:leading-[1.5] tracking-wide min-h-[12rem] sm:min-h-[10rem]"
-				initial={{ opacity: 0, y: 100 }}
+				initial={{ opacity: 0, y: 50 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{
 					delay: 0.3,
-					duration: 0.8,
+					duration: 0.6,
 				}}
 			>
 				<div className="mb-4">
@@ -226,190 +199,68 @@ export default function Intro() {
 				</div>
 
 				<div className="text-gray-700 dark:text-gray-300">
-					<Typewriter
-						text="I build immersive digital experiences with React, Next.js, and modern UI principles."
-						delay={20}
-					/>
+					Passionate about clean code and creating beautiful UIs.
 				</div>
 			</motion.div>
 
-			{/* Futuristic Action Buttons with Hover Effects */}
+			{/* Simplified Action Buttons */}
 			<motion.div
-				className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-base sm:text-lg font-medium"
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				transition={{ delay: 0.6 }}
+				className="flex flex-wrap gap-4 justify-center mt-8"
+				initial={{ opacity: 0, y: 50 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{
+					delay: 0.5,
+					duration: 0.6,
+				}}
 			>
-				{/* Contact Button with Digital Pulse Effect */}
+				{/* Contact Me Button - Simpler Style */}
 				<motion.div
-					whileHover="hover"
-					whileTap="tap"
-					variants={{
-						hover: { y: -5 },
-						tap: { scale: 0.95 },
+					whileHover={{ scale: 1.05 }}
+					whileTap={{ scale: 0.95 }}
+					onClick={() => {
+						setActiveSection("Contact");
+						setTimeOfLastClick(Date.now());
 					}}
-					onHoverStart={() => setHoveredButton("contact")}
-					onHoverEnd={() => setHoveredButton(null)}
-					className="relative"
+					className="px-6 py-3 flex gap-2 items-center rounded-lg cursor-pointer bg-blue-600 text-white shadow-md hover:bg-blue-700 dark:bg-cyan-500 dark:hover:bg-cyan-600 transition-all duration-200"
 				>
-					<Link
-						href="#contact"
-						className="group relative overflow-hidden bg-gray-900 dark:bg-gradient-to-br dark:from-blue-600 dark:to-teal-500 text-white px-5 py-2.5 sm:px-6 sm:py-3 flex items-center gap-2 rounded-full outline-none transition-all duration-300 shadow-lg hover:shadow-xl dark:hover:shadow-blue-500/30 border border-gray-300/10"
-						onClick={() => {
-							setActiveSection("Contact");
-							setTimeOfLastClick(Date.now());
-						}}
-					>
-						<span className="relative z-10">
-							<Typewriter text="Contact me" delay={30} />
-						</span>
-						<motion.span
-							className="relative z-10"
-							animate={{
-								x: hoveredButton === "contact" ? [0, 5, 0] : 0,
-							}}
-							transition={{
-								duration: 1.5,
-								repeat: Infinity,
-								repeatType: "loop",
-							}}
-						>
-							<BsArrowRight />
-						</motion.span>
-						{hoveredButton === "contact" && (
-							<motion.div
-								className="absolute inset-0 bg-blue-500/10 dark:bg-cyan-500/10 rounded-full"
-								initial={{ scale: 0.5, opacity: 0 }}
-								animate={{ scale: 1.2, opacity: 0.4 }}
-								exit={{ scale: 1.5, opacity: 0 }}
-								transition={{ duration: 0.8 }}
-							/>
-						)}
-					</Link>
+					<span className="font-medium">Contact Me</span>
+					<BsArrowRight />
 				</motion.div>
 
-				{/* Download CV Button with Digital Download Effect */}
-				<motion.div
-					whileHover="hover"
-					whileTap="tap"
-					variants={{
-						hover: { y: -5 },
-						tap: { scale: 0.95 },
-					}}
-					onHoverStart={() => setHoveredButton("download")}
-					onHoverEnd={() => setHoveredButton(null)}
-					className="relative"
+				{/* Resume Download Button */}
+				<motion.a
+					href="/RESUME--RATHOD_AMOL_ANIRUDHA.pdf"
+					download
+					whileHover={{ scale: 1.05 }}
+					whileTap={{ scale: 0.95 }}
+					className="px-6 py-3 flex gap-2 items-center rounded-lg cursor-pointer bg-purple-600 text-white shadow-md hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600 transition-all duration-200"
 				>
-					<a
-						className="group relative overflow-hidden bg-white text-gray-700 dark:bg-white/10 dark:text-white/90 px-5 py-2.5 sm:px-6 sm:py-3 flex items-center gap-2 rounded-full outline-none transition-all duration-300 shadow-lg hover:shadow-xl border border-gray-300 dark:border-white/20"
-						href="/RESUME--RATHOD_AMOL_ANIRUDHA.pdf"
-						download
-					>
-						<span className="relative z-10">
-							<Typewriter text="Download CV" delay={30} />
-						</span>
-						<motion.div
-							className="relative z-10"
-							animate={{
-								y: hoveredButton === "download" ? [0, 2, 0] : 0,
-							}}
-							transition={{
-								duration: 1,
-								repeat: Infinity,
-								repeatType: "reverse",
-							}}
-						>
-							<HiDownload />
-						</motion.div>
-						{hoveredButton === "download" && (
-							<motion.div
-								className="absolute -bottom-1 left-0 right-0 h-1 bg-blue-500/30 dark:bg-cyan-500/30"
-								initial={{ width: 0 }}
-								animate={{ width: "100%" }}
-								transition={{ duration: 1.5, ease: "linear" }}
-							/>
-						)}
-					</a>
-				</motion.div>
+					<span className="font-medium">Resume</span>
+					<HiDownload />
+				</motion.a>
 
-				{/* Social Icons with Particle Burst */}
-				<div className="flex gap-2 sm:gap-3">
-					<motion.div
-						whileHover="hover"
-						whileTap="tap"
-						variants={{
-							hover: { y: -5 },
-							tap: { scale: 0.9 },
-						}}
-					>
-						<motion.a
-							className="relative p-2.5 sm:p-3 text-gray-700 dark:text-white rounded-full bg-white dark:bg-white/10 shadow-md hover:shadow-lg border border-gray-300 dark:border-white/20 transition-all duration-300 flex items-center justify-center"
-							href="https://www.linkedin.com/in/amol-rathod-44b4aa230/"
-							target="_blank"
-							whileHover={{
-								scale: 1.1,
-								backgroundColor: "rgba(10, 102, 194, 0.1)",
-							}}
-						>
-							<BsLinkedin className="text-lg sm:text-xl" />
-						</motion.a>
-					</motion.div>
+				{/* Social Media Links - Simplified */}
+				<motion.a
+					href="https://www.linkedin.com/in/amol-rathod-44b4aa230/"
+					target="_blank"
+					rel="noopener noreferrer"
+					whileHover={{ scale: 1.1 }}
+					whileTap={{ scale: 0.95 }}
+					className="p-3 rounded-lg cursor-pointer bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-all duration-200"
+				>
+					<BsLinkedin />
+				</motion.a>
 
-					<motion.div
-						whileHover="hover"
-						whileTap="tap"
-						variants={{
-							hover: { y: -5 },
-							tap: { scale: 0.9 },
-						}}
-					>
-						<motion.a
-							className="relative p-2.5 sm:p-3 text-gray-700 dark:text-white rounded-full bg-white dark:bg-white/10 shadow-md hover:shadow-lg border border-gray-300 dark:border-white/20 transition-all duration-300 flex items-center justify-center"
-							href="https://github.com/amol1629"
-							target="_blank"
-							whileHover={{
-								scale: 1.1,
-								backgroundColor: "rgba(36, 41, 46, 0.1)",
-							}}
-						>
-							<FaGithubSquare className="text-lg sm:text-xl" />
-						</motion.a>
-					</motion.div>
-				</div>
-			</motion.div>
-
-			{/* Floating Tech Tags */}
-			<motion.div
-				className="hidden sm:flex flex-wrap justify-center gap-2 mt-12 opacity-70"
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 0.7 }}
-				transition={{ delay: 1 }}
-			>
-				{[
-					"HTML",
-					"CSS",
-					"JavaScript",
-					"React.js",
-					"Next.js",
-					"TypeScript",
-					"Tailwind CSS",
-					"Node.js",
-					
-				].map((tech, i) => (
-					<motion.span
-						key={tech}
-						className="text-xs px-3 py-1 rounded-full bg-white/80 dark:bg-white/10 text-gray-700 dark:text-white/80 border border-gray-300 dark:border-white/20"
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ delay: 0.8 + i * 0.1 }}
-						whileHover={{
-							scale: 1.1,
-							backgroundColor: "rgba(59, 130, 246, 0.2)",
-						}}
-					>
-						{tech}
-					</motion.span>
-				))}
+				<motion.a
+					href="https://github.com/amol-rathod"
+					target="_blank"
+					rel="noopener noreferrer"
+					whileHover={{ scale: 1.1 }}
+					whileTap={{ scale: 0.95 }}
+					className="p-3 rounded-lg cursor-pointer bg-gray-800 text-white hover:bg-gray-900 transition-all duration-200"
+				>
+					<FaGithubSquare />
+				</motion.a>
 			</motion.div>
 		</section>
 	);
