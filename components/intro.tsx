@@ -13,9 +13,14 @@ import { useActiveSectionContext } from "@/context/active-section-context";
 interface TypewriterProps {
 	text: string;
 	delay?: number;
+	onComplete?: () => void;
 }
 
-const Typewriter: React.FC<TypewriterProps> = ({ text, delay = 30 }) => {
+const Typewriter: React.FC<TypewriterProps> = ({
+	text,
+	delay = 30,
+	onComplete,
+}) => {
 	const [displayedText, setDisplayedText] = useState("");
 	const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -33,8 +38,10 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, delay = 30 }) => {
 			}, delay);
 
 			return () => clearTimeout(timeout);
+		} else if (onComplete) {
+			onComplete();
 		}
-	}, [currentIndex, delay, text]);
+	}, [currentIndex, delay, text, onComplete]);
 
 	return <>{displayedText}</>;
 };
@@ -81,20 +88,60 @@ export default function Intro() {
 
 	const phrases = [
 		"Front-end developer",
+		"JavaScript expert",
 		"React specialist",
 		"Next.js enthusiast",
 		"UI craftsman",
 	];
-	const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+
+	const [currentText, setCurrentText] = useState("");
+	const [currentIndex, setCurrentIndex] = useState(0);
+	const [isDeleting, setIsDeleting] = useState(false);
+
+	// Typing speed (in milliseconds)
+	const typingDelay = 100;
+	const deletingDelay = 50;
+	const pauseDelay = 1000;
 
 	useEffect(() => {
-		const cyclePhrases = () => {
-			setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
-		};
+		const timeout = setTimeout(
+			() => {
+				// Current phrase being handled
+				const currentPhrase = phrases[currentIndex];
 
-		const interval = setInterval(cyclePhrases, 3000);
-		return () => clearInterval(interval);
-	}, [phrases.length]);
+				// If deleting
+				if (isDeleting) {
+					setCurrentText(
+						currentPhrase.substring(0, currentText.length - 1)
+					);
+
+					// When deletion is complete
+					if (currentText.length === 0) {
+						setIsDeleting(false);
+						// Move to next phrase
+						setCurrentIndex((prev) => (prev + 1) % phrases.length);
+					}
+				}
+				// If typing
+				else {
+					setCurrentText(
+						currentPhrase.substring(0, currentText.length + 1)
+					);
+
+					// When typing is complete
+					if (currentText.length === currentPhrase.length) {
+						// Pause before starting to delete
+						setTimeout(() => {
+							setIsDeleting(true);
+						}, pauseDelay);
+					}
+				}
+			},
+			isDeleting ? deletingDelay : typingDelay
+		);
+
+		return () => clearTimeout(timeout);
+	}, [currentText, currentIndex, isDeleting, phrases]);
 
 	useEffect(() => {
 		controls.start({
@@ -108,7 +155,7 @@ export default function Intro() {
 		<section
 			ref={ref}
 			id="home"
-			className="relative mb-4 max-w-[60rem] text-center sm:mb-0 scroll-mt-[100rem] px-4 py-8 md:px-6 md:py-12 lg:px-8 lg:py-16 overflow-hidden"
+			className="relative mb-4 max-w-[60rem] text-center sm:mb-0 scroll-mt-[100rem] px-4 py-4 md:px-6 md:py-12 lg:px-8 lg:py-16 overflow-hidden"
 		>
 			{/* Simplified Background Elements */}
 			<div className="absolute inset-0 -z-10 overflow-hidden">
@@ -184,18 +231,10 @@ export default function Intro() {
 					<span className="text-gray-800 dark:text-gray-200">
 						I'm a{" "}
 					</span>
-					<AnimatePresence mode="wait">
-						<motion.span
-							key={currentPhraseIndex}
-							className="font-bold bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-purple-400 dark:to-pink-500 bg-clip-text text-transparent"
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0, y: -20 }}
-							transition={{ duration: 0.5 }}
-						>
-							{phrases[currentPhraseIndex]}
-						</motion.span>
-					</AnimatePresence>
+					<span className="font-bold bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-purple-400 dark:to-pink-500 bg-clip-text text-transparent inline-block min-w-[180px]">
+						{currentText}
+						<span className="animate-blink">|</span>
+					</span>
 				</div>
 
 				<div className="text-gray-700 dark:text-gray-300">
@@ -205,7 +244,7 @@ export default function Intro() {
 
 			{/* Simplified Action Buttons */}
 			<motion.div
-				className="flex flex-wrap gap-4 justify-center mt-8"
+				className="flex flex-wrap gap-4 justify-center items-center mt-8"
 				initial={{ opacity: 0, y: 50 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{
@@ -213,19 +252,21 @@ export default function Intro() {
 					duration: 0.6,
 				}}
 			>
-				{/* Contact Me Button - Simpler Style */}
-				<motion.div
-					whileHover={{ scale: 1.05 }}
-					whileTap={{ scale: 0.95 }}
-					onClick={() => {
-						setActiveSection("Contact");
-						setTimeOfLastClick(Date.now());
-					}}
-					className="px-6 py-3 flex gap-2 items-center rounded-lg cursor-pointer bg-blue-600 text-white shadow-md hover:bg-blue-700 dark:bg-cyan-500 dark:hover:bg-cyan-600 transition-all duration-200"
-				>
-					<span className="font-medium">Contact Me</span>
-					<BsArrowRight />
-				</motion.div>
+				{/* Contact Me Button - Fixed to use href properly */}
+				<Link href="#contact">
+					<motion.div
+						whileHover={{ scale: 1.05 }}
+						whileTap={{ scale: 0.95 }}
+						onClick={() => {
+							setActiveSection("Contact");
+							setTimeOfLastClick(Date.now());
+						}}
+						className="px-6 py-3 flex gap-2 items-center rounded-full cursor-pointer bg-blue-600 text-white shadow-md hover:bg-blue-700 dark:bg-cyan-500 dark:hover:bg-cyan-600 transition-all duration-300 ease-in-out"
+					>
+						<span className="font-medium">Contact Me</span>
+						<BsArrowRight />
+					</motion.div>
+				</Link>
 
 				{/* Resume Download Button */}
 				<motion.a
@@ -233,20 +274,20 @@ export default function Intro() {
 					download
 					whileHover={{ scale: 1.05 }}
 					whileTap={{ scale: 0.95 }}
-					className="px-6 py-3 flex gap-2 items-center rounded-lg cursor-pointer bg-purple-600 text-white shadow-md hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600 transition-all duration-200"
+					className="px-6 py-3 flex gap-2 items-center rounded-full cursor-pointer bg-purple-600 text-white shadow-md hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600 transition-all duration-300 ease-in-out"
 				>
 					<span className="font-medium">Resume</span>
 					<HiDownload />
 				</motion.a>
 
-				{/* Social Media Links - Simplified */}
+				{/* Social Media Links - Now circular */}
 				<motion.a
 					href="https://www.linkedin.com/in/amol-rathod-44b4aa230/"
 					target="_blank"
 					rel="noopener noreferrer"
 					whileHover={{ scale: 1.1 }}
 					whileTap={{ scale: 0.95 }}
-					className="p-3 rounded-lg cursor-pointer bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-all duration-200"
+					className="p-3 rounded-full flex items-center justify-center w-10 h-10 cursor-pointer bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-all duration-300 ease-in-out"
 				>
 					<BsLinkedin />
 				</motion.a>
@@ -257,7 +298,7 @@ export default function Intro() {
 					rel="noopener noreferrer"
 					whileHover={{ scale: 1.1 }}
 					whileTap={{ scale: 0.95 }}
-					className="p-3 rounded-lg cursor-pointer bg-gray-800 text-white hover:bg-gray-900 transition-all duration-200"
+					className="p-3 rounded-full flex items-center justify-center w-10 h-10 cursor-pointer bg-gray-800 text-white hover:bg-gray-900 transition-all duration-300 ease-in-out"
 				>
 					<FaGithubSquare />
 				</motion.a>
