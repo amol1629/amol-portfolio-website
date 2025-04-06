@@ -13,3 +13,28 @@ html.dark {
 .borderBlack {
   @apply border border-black/10;
 }
+
+.animation-delay-3000 {
+  animation-delay: 3s;
+}
+
+/* styles/globals.css or your main css file */
+@layer utilities {
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}
+
+@media (max-width: 639px) {
+  .vertical-timeline-element-date {
+    display: none !important;
+  }
+}
+
+.vertical-timeline-element-content::before {
+  display: none !important;
+}
+
