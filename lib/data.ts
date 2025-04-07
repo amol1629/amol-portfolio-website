@@ -4,6 +4,8 @@ import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
 import corpcommentImg from "@/public/corpcomment.png";
 import rmtdevImg from "@/public/rmtdev.png";
+import hotelManagementProjectImage from "@/public/hotelManagementProject.png";
+import pentkartImg from "@/public/pentKartProject.png";
 import wordanalyticsImg from "@/public/wordanalytics.png";
 
 export const links = [
@@ -85,21 +87,25 @@ export const projectsData = [
 		description:
 			"A full-stack e-commerce platform designed for seamless shopping experiences. Features include product discovery, intuitive cart management, secure checkout, and order tracking.",
 		tags: ["React", "Node.js", "Express", "MongoDB", "Redux"],
-		imageUrl: rmtdevImg,
+		imageUrl: pentkartImg,
+		githubUrl:
+			"https://github.com/amol1629/pentKART/tree/master/arpentagon-ecommerce",
 	},
 	{
 		title: "True Feedback",
 		description:
 			"An AI-powered anonymous feedback platform with intelligent suggestions. Supports secure email & OTP login for an effortless user experience.",
 		tags: ["Next.js", "MongoDB", "ShadCN", "Tailwind CSS", "ChatGPT API"],
-		imageUrl: rmtdevImg,
+		imageUrl: hotelManagementProjectImage,
+		githubUrl: "",
 	},
 	{
 		title: "Hotel Management System",
 		description:
 			"A modern hotel booking system with seamless room search, booking management, and secure payments via Stripe. Users can authenticate using Google, GitHub, or email/password.",
 		tags: ["Next.js", "React", "Sanity", "Tailwind", "Stripe"],
-		imageUrl: rmtdevImg,
+		imageUrl: hotelManagementProjectImage,
+		githubUrl: "https://github.com/amol1629/hotel-management",
 	},
 ];
 

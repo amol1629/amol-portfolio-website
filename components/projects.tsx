@@ -27,7 +27,12 @@ export default function Projects() {
 
 			<div className="grid grid-cols-1 gap-10 mt-10 sm:px-2 md:px-6 ">
 				{projectsData.map((project, index) => (
-					<Project key={index} {...project} />
+					<Project
+						key={index}
+						{...project}
+						// githubUrl="{project.githubUrl}"
+						index={index}
+					/>
 				))}
 			</div>
 		</section>
