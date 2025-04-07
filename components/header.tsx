@@ -8,58 +8,72 @@ import clsx from "clsx";
 import { useActiveSectionContext } from "@/context/active-section-context";
 
 export default function Header() {
-  const { activeSection, setActiveSection, setTimeOfLastClick } =
-    useActiveSectionContext();
+	const { activeSection, setActiveSection, setTimeOfLastClick } =
+		useActiveSectionContext();
 
-  return (
-		<header className="z-[999] relative">
+	return (
+		<header className="z-[999] fixed top-4 left-1/2 -translate-x-1/2 w-full flex justify-center px-4 pointer-events-none">
 			<motion.div
-				className="fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[48rem] sm:rounded-full dark:bg-gray-950 dark:border-black/40 dark:bg-opacity-75"
-				initial={{ y: -100, x: "-50%", opacity: 0 }}
-				animate={{ y: 0, x: "-50%", opacity: 1 }}
-			></motion.div>
-
-			<nav className="flex fixed top-[0.15rem] left-1/2 h-12 -translate-x-1/2 py-2 sm:top-[1.7rem] sm:h-[initial] sm:py-0">
-				<ul className="flex w-[22rem] flex-wrap items-center justify-center gap-y-1 text-[0.9rem] font-medium text-gray-500 sm:w-[initial] sm:flex-nowrap sm:gap-5">
-					{links.map((link) => (
-						<motion.li
-							className="h-3/4 flex items-center justify-center relative"
-							key={link.hash}
-							initial={{ y: -100, opacity: 0 }}
-							animate={{ y: 0, opacity: 1 }}
-						>
-							<Link
-								className={clsx(
-									"flex w-full items-center justify-center px-4 py-3  text-black hover:text-gray-500 transition dark:text-gray-200 dark:hover:text-gray-400 ",
-									{
-										"text-black dark:text-gray-100":
-											activeSection === link.name,
-									}
-								)}
-								href={link.hash}
-								onClick={() => {
-									setActiveSection(link.name);
-									setTimeOfLastClick(Date.now());
-								}}
+				initial={{ y: -80, opacity: 0 }}
+				animate={{ y: 0, opacity: 1 }}
+				transition={{ duration: 0.6, ease: "easeOut" }}
+				className="pointer-events-auto w-full max-w-5xl px-4 py-2 rounded-3xl 
+					backdrop-blur-lg border border-white/20 dark:border-white/10 
+					bg-white/60 dark:bg-[#0f0f0f]/70
+					shadow-lg dark:shadow-[0_0_25px_rgba(0,0,0,0.4)]
+					transition-colors duration-300"
+			>
+				<nav className="w-full">
+					<ul className="flex flex-wrap justify-center gap-2 sm:gap-5 py-2 sm:py-3 text-sm font-medium">
+						{links.map((link, index) => (
+							<motion.li
+								key={link.hash}
+								initial={{ y: -10, opacity: 0 }}
+								animate={{ y: 0, opacity: 1 }}
+								transition={{ delay: 0.04 * index }}
+								className="relative"
 							>
-								{link.name}
+								<Link
+									href={link.hash}
+									onClick={() => {
+										setActiveSection(link.name);
+										setTimeOfLastClick(Date.now());
+									}}
+									className={clsx(
+										"group relative px-4 py-2 rounded-full transition-all duration-300 isolate overflow-hidden text-xs sm:text-sm",
+										activeSection === link.name
+											? "text-white dark:text-black font-semibold"
+											: "text-black/80 dark:text-white/70 hover:text-black dark:hover:text-white"
+									)}
+								>
+									<span className="relative z-10">
+										{link.name}
+									</span>
 
-								{link.name === activeSection && (
-									<motion.span
-										className="bg-gray-100 rounded-full border border-gray-600 dark:border-white   absolute inset-0 -z-10 dark:bg-gray-800 "
-										layoutId="activeSection"
-										transition={{
-											type: "spring",
-											stiffness: 380,
-											damping: 30,
-										}}
-									></motion.span>
-								)}
-							</Link>
-						</motion.li>
-					))}
-				</ul>
-			</nav>
+									{/* Active pill background */}
+									{activeSection === link.name && (
+										<motion.span
+											layoutId="activeSection"
+											transition={{
+												type: "spring",
+												stiffness: 500,
+												damping: 30,
+											}}
+											className="absolute inset-0 z-0 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 dark:from-cyan-400 dark:to-blue-600 shadow-[0_0_8px_2px_rgba(0,191,255,0.25)] dark:shadow-[0_0_8px_2px_rgba(0,191,255,0.15)]"
+										/>
+									)}
+
+									{/* Glow hover effect */}
+									<span
+										className="absolute inset-0 z-[-1] rounded-full blur-md scale-110 opacity-0 group-hover:opacity-100 transition-all duration-300
+										bg-blue-400/20 dark:bg-white/10"
+									/>
+								</Link>
+							</motion.li>
+						))}
+					</ul>
+				</nav>
+			</motion.div>
 		</header>
-  );
+	);
 }

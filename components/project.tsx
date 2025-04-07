@@ -7,6 +7,21 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 type ProjectProps = (typeof projectsData)[number];
 
+const skillItemVariants = {
+	initial: { opacity: 0, y: 10, scale: 0.95 },
+	animate: {
+		opacity: 1,
+		y: 0,
+		scale: 1,
+		transition: { duration: 0.4, ease: "easeOut" },
+	},
+	whileHover: {
+		scale: 1.08,
+		boxShadow: "0 0 10px rgba(59,130,246,0.4)",
+		transition: { duration: 0.3 },
+	},
+};
+
 export default function Project({
 	title,
 	description,
@@ -56,12 +71,28 @@ export default function Project({
 					</p>
 					<ul className="flex flex-wrap gap-2 mt-4 sm:mt-auto">
 						{tags.map((tag, index) => (
-							<li
+							// <li
+							// 	key={index}
+							// 	className="px-3 py-1 text-[0.75rem] uppercase tracking-wide text-white bg-black/70 dark:bg-white/10 rounded-full shadow-sm"
+							// >
+							// 	{tag}
+							// </li>
+
+							<motion.span
 								key={index}
-								className="px-3 py-1 text-[0.75rem] uppercase tracking-wide text-white bg-black/70 dark:bg-white/10 rounded-full shadow-sm"
+								variants={skillItemVariants}
+								initial="initial"
+								animate="animate"
+								whileHover="whileHover"
+								className="px-4 py-2 text-sm font-semibold rounded-full 
+								backdrop-blur-md bg-white/30 dark:bg-white/10 
+								text-gray-900 dark:text-white 
+								border border-gray-300 dark:border-white/20 
+								shadow-[0_0_10px_rgba(59,130,246,0.15)] hover:shadow-[0_0_15px_rgba(59,130,246,0.35)] 
+								transition-all duration-300 ease-in-out cursor-default whitespace-nowrap tracking-wide"
 							>
 								{tag}
-							</li>
+							</motion.span>
 						))}
 					</ul>
 				</div>

@@ -119,9 +119,11 @@ export default function Skills() {
 						</div>
 
 						<div className="relative z-10">
-							<h3 className="font-semibold text-xl text-gray-800 dark:text-white mb-4">
+							<h3 className="text-xl  sm:text-2xl font-bold mb-6 relative text-gray-800 dark:text-gray-100">
 								{group.category}
+							
 							</h3>
+
 							<div className="flex flex-wrap gap-3">
 								{group.skills.map((skill, idx) => (
 									<motion.span
@@ -130,7 +132,12 @@ export default function Skills() {
 										initial="initial"
 										animate="animate"
 										whileHover="whileHover"
-										className="px-4 py-2 text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 cursor-default border border-gray-200 dark:border-gray-700"
+										className="px-4 py-2 text-sm font-semibold rounded-full 
+	backdrop-blur-md bg-white/30 dark:bg-white/10 
+	text-gray-900 dark:text-white 
+	border border-gray-300 dark:border-white/20 
+	shadow-[0_0_10px_rgba(59,130,246,0.15)] hover:shadow-[0_0_15px_rgba(59,130,246,0.35)] 
+	transition-all duration-300 ease-in-out cursor-default whitespace-nowrap tracking-wide"
 									>
 										{skill}
 									</motion.span>

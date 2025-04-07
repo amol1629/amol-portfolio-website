@@ -55,13 +55,13 @@ const fadeInAnimation = {
 };
 
 export default function Certificates() {
-	const { ref } = useSectionInView("Certificates");
+	const { ref } = useSectionInView("Certificates", 0.3); // or Experience
 
 	return (
 		<section
 			id="certificates"
 			ref={ref}
-			className="relative mb-28 max-w-6xl mx-auto px-6 scroll-mt-28 text-center sm:mb-40 py-20 rounded-2xl overflow-hidden"
+			className="relative mb-28 max-w-6xl mx-auto px-6 scroll-mt-28 text-center sm:mb-40 py-20 rounded-2xl overflow-hidden "
 		>
 			{/* 🌀 Animated Background */}
 			<div className="absolute inset-0 -z-10 overflow-hidden">

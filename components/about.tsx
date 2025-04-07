@@ -19,44 +19,53 @@ export default function About() {
 		>
 			<SectionHeading>About me</SectionHeading>
 			<p className="mb-3">
-				Seeking a{" "}
-				<span className="font-medium">Front-End Developer</span>{" "}
-				position in the IT industry, leveraging
-				expertise in{" "}
+				Hi, I'm <span className="font-medium">Amol Rathod</span> — a
+				passionate{" "}
+				<span className="font-medium">Front-End Developer</span> based
+				in Pune, Maharashtra. I specialize in crafting seamless,
+				scalable, and performance-driven web experiences using modern
+				technologies like{" "}
 				<span className="font-medium">
-					JavaScript, React, and Next.js
-				</span>{" "}
-				to build scalable and high-performance web applications. Proven
-				ability to craft{" "}
-				<span className="font-medium">
-					intuitive and user-centric UIs
-				</span>{" "}
-				using Tailwind CSS and ShadCN, ensuring clean code and adherence
-				to best practices like{" "}
-				<span className="font-medium">SOLID, DRY, and KISS</span>. Eager
-				to contribute to a dynamic team and deliver impactful solutions
-				that drive growth and success.
-			</p>
-
-			<p className="mb-3">
-				After graduating with a degree in{" "}
-				<span className="font-medium">Computer Science</span>, I
-				developed a passion for building seamless user experiences. My
-				core stack includes{" "}
-				<span className="font-medium">
-					React, Next.js, Node.js, and MongoDB
+					JavaScript, React, Next.js, Tailwind CSS
 				</span>
-				. I am also familiar with TypeScript, Vue.js, and Redux. I
-				thrive in Agile environments, collaborating with teams to
-				deliver optimized and maintainable code.
+				, and <span className="font-medium">ShadCN</span>.
 			</p>
 
 			<p className="mb-3">
-				<span className="italic">When I'm not coding</span>, I enjoy
-				reading books, watching documentaries, and exploring new
-				technologies. I also have a keen interest in{" "}
-				<span className="font-medium">history and philosophy</span> and
-				am currently learning how to play the guitar.
+				With over{" "}
+				<span className="font-medium">
+					2 years of professional experience
+				</span>
+				, I’ve contributed to high-impact client projects, improving
+				performance, stability, and maintainability. I follow clean code
+				principles such as{" "}
+				<span className="font-medium">SOLID, DRY, and KISS</span> to
+				ensure efficient and elegant solutions that scale well.
+			</p>
+
+			<p className="mb-3">
+				Whether it's an{" "}
+				<span className="font-medium">e-commerce platform</span> like{" "}
+				<em>PentKart</em> or an{" "}
+				<span className="font-medium">AI-enhanced feedback tool</span>
+				like <em>True Feedback</em>, I love solving real-world problems
+				with thoughtful UI design and modern development practices. My
+				core stack also includes{" "}
+				<span className="font-medium">Node.js and MongoDB</span>, and
+				I'm familiar with{" "}
+				<span className="font-medium">
+					TypeScript, Vue.js, and Redux
+				</span>
+				.
+			</p>
+
+			<p className="mb-3">
+				When I'm not coding, I enjoy{" "}
+				<span className="font-medium">reading books</span>, watching
+				documentaries, and diving into{" "}
+				<span className="font-medium">history and philosophy</span>. I'm
+				 always exploring
+				new technologies to stay ahead in this ever-evolving field.
 			</p>
 		</motion.section>
 	);

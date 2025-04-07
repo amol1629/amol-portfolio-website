@@ -15,7 +15,7 @@ export default function Contact() {
 		<motion.section
 			id="contact"
 			ref={ref}
-			className="relative mb-20 sm:mb-28 w-[min(100%,38rem)] text-center mx-auto px-4 py-16 rounded-2xl overflow-hidden "
+			className="relative mb-20 sm:mb-28 w-[min(100%,38rem)] text-center mx-auto px-8 py-12 rounded-2xl overflow-hidden "
 			initial={{ opacity: 0, y: 30 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.6, ease: "easeOut" }}
@@ -31,9 +31,9 @@ export default function Contact() {
 				></div>
 			</div>
 
-			<SectionHeading>Contact me</SectionHeading>
+			<SectionHeading >Contact me</SectionHeading>
 
-			<p className="text-gray-700 dark:text-white/80 -mt-6 mb-6">
+			<p className="text-gray-700 dark:text-white/80 mt-6 mb-6">
 				Please contact me directly at{" "}
 				<a
 					className="underline underline-offset-4 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -70,7 +70,7 @@ export default function Contact() {
 					required
 					maxLength={5000}
 				/>
-				<div className="mx-auto">
+				<div className="mx-auto mt-6">
 					<SubmitBtn />
 				</div>
 			</form>

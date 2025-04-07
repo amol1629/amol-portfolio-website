@@ -155,7 +155,7 @@ export default function Intro() {
 		<section
 			ref={ref}
 			id="home"
-			className="relative mb-4 max-w-[60rem] text-center sm:mb-0 scroll-mt-[100rem] px-4 py-4 md:px-6 md:py-12 lg:px-8 lg:py-16 overflow-hidden"
+			className="relative mb-4 max-w-[60rem] text-center sm:mb-0 scroll-mt-[100rem] px-4 py-4 md:px-6 md:py-8 lg:px-8 lg:py-12 overflow-hidden"
 		>
 			{/* Simplified Background Elements */}
 			<div className="absolute inset-0 -z-10 overflow-hidden">

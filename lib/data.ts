@@ -22,15 +22,16 @@ export const links = [
 	{
 		name: "Skills",
 		hash: "#skills",
-  },
-  {
-    name : "Certificates",
-    hash : "#certificates",
-  },
+	},
+	{
+		name: "Certificates",
+		hash: "#certificates",
+	},
 	{
 		name: "Experience",
 		hash: "#experience",
 	},
+
 	{
 		name: "Contact",
 		hash: "#contact",
@@ -101,8 +102,6 @@ export const projectsData = [
 		imageUrl: rmtdevImg,
 	},
 ];
-
-
 
 export const skillsData = [
 	"HTML",
