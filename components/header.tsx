@@ -42,7 +42,7 @@ export default function Header() {
 									className={clsx(
 										"group relative px-4 py-2 rounded-full transition-all duration-300 isolate overflow-hidden text-xs sm:text-sm",
 										activeSection === link.name
-											? "text-white dark:text-black font-semibold"
+											? "text-white  font-semibold"
 											: "text-black/80 dark:text-white/70 hover:text-black dark:hover:text-white"
 									)}
 								>
