@@ -4,6 +4,7 @@ import React from "react";
 import SectionHeading from "./section-heading";
 import { motion } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
+import { useTheme } from "@/context/theme-context";
 
 const skillsData = [
 	{
@@ -73,8 +74,8 @@ const skillItemVariants = {
 };
 
 export default function Skills() {
-	const { ref } = useSectionInView("Skills");
-
+	const { ref } = useSectionInView("Skills", 0.3); // 
+	const { theme } = useTheme()
 	return (
 		<section
 			id="skills"
