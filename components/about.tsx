@@ -25,21 +25,21 @@ export default function About() {
 				in Pune, Maharashtra. I specialize in crafting seamless,
 				scalable, and performance-driven web experiences using modern
 				technologies like{" "}
-				<span className="font-medium">
+				<span className="font-bold">
 					JavaScript, React, Next.js, Tailwind CSS
 				</span>
 				, and <span className="font-medium">ShadCN</span>.
 			</p>
 
 			<p className="mb-3">
-				With over{" "}
-				<span className="font-medium">
+				With almost{" "}
+				<span className="font-bold underline">
 					2 years of professional experience
 				</span>
 				, I’ve contributed to high-impact client projects, improving
 				performance, stability, and maintainability. I follow clean code
 				principles such as{" "}
-				<span className="font-medium">SOLID, DRY, and KISS</span> to
+				<span className="font-bold">SOLID, DRY, and KISS</span> to
 				ensure efficient and elegant solutions that scale well.
 			</p>
 

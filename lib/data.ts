@@ -97,7 +97,8 @@ export const projectsData = [
 			"An AI-powered anonymous feedback platform with intelligent suggestions. Supports secure email & OTP login for an effortless user experience.",
 		tags: ["Next.js", "MongoDB", "ShadCN", "Tailwind CSS", "ChatGPT API"],
 		imageUrl: hotelManagementProjectImage,
-		githubUrl: "",
+		githubUrl:
+			"https://github.com/amol1629/pentKART/tree/master/arpentagon-ecommerce",
 	},
 	{
 		title: "Hotel Management System",
