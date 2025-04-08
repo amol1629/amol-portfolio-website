@@ -10,11 +10,10 @@ export default function SectionHeading({ children }: SectionHeadingProps) {
 		//   {children}
 		// </h2>
 
-		<h3 className="text-3xl font-extrabold capitalize mb-8 text-center sm:text-2xl  relative">
+		<h3 className="text-3xl md:text-4xl lg:text-5xl font-bold  capitalize mb-8 text-center sm:text-2xl  relative">
 			<span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-blue-500 to-purple-500 dark:from-cyan-300 dark:via-blue-400 dark:to-purple-400">
 				{children}
-      </span>
-      
+			</span>
 		</h3>
 	);
 }

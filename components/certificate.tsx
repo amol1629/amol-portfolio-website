@@ -505,8 +505,8 @@ export default function Certificates() {
 										{selectedCertificate.name}
 									</motion.h3>
 
-									<div className="relative w-full overflow-auto max-h-[60vh] rounded-lg mb-6">
-										<div className="flex justify-center">
+									<div className="w-full mb-6 flex justify-center items-center">
+										<div className="relative max-h-[60vh] rounded-lg">
 											<motion.div
 												initial={{
 													scale: 0.98,
@@ -521,7 +521,7 @@ export default function Certificates() {
 													ease: [0.22, 1, 0.36, 1],
 													delay: 0.3,
 												}}
-												className="relative"
+												className="relative h-full"
 											>
 												<Image
 													src={
@@ -532,7 +532,8 @@ export default function Certificates() {
 													}
 													width={800}
 													height={600}
-													className="rounded-lg object-contain shadow-lg"
+													className="rounded-lg object-contain max-h-[60vh] shadow-lg"
+													style={{ maxWidth: "100%" }}
 												/>
 												{/* Holographic overlay effect */}
 												<div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(59,130,246,0.1)_0%,transparent_50%,rgba(59,130,246,0.1)_100%)] pointer-events-none"></div>
@@ -541,8 +542,9 @@ export default function Certificates() {
 									</div>
 
 									{/* Download section with animated format selector */}
+									{/* Download section with animated format selector */}
 									<motion.div
-										className="w-full max-w-md"
+										className="relative w-full max-w-md"
 										initial={{ opacity: 0, y: 20 }}
 										animate={{ opacity: 1, y: 0 }}
 										transition={{
@@ -583,13 +585,262 @@ export default function Certificates() {
 											</Link>
 										</div>
 
+										{/* Format selector floating above button */}
+										<AnimatePresence>
+											{showFormatSelector && (
+												<motion.div
+													className="absolute bottom-full left-0 right-0 mb-4 z-10"
+													initial={{
+														opacity: 0,
+														y: 20,
+														scale: 0.95,
+													}}
+													animate={{
+														opacity: 1,
+														y: 0,
+														scale: 1,
+													}}
+													exit={{
+														opacity: 0,
+														y: 10,
+														scale: 0.95,
+													}}
+													transition={{
+														type: "spring",
+														stiffness: 500,
+														damping: 30,
+													}}
+												>
+													<div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+														{/* Floating selector with gradient border */}
+														<div className="relative p-2 bg-gradient-to-br from-white/80 to-gray-50 dark:from-gray-800/80 dark:to-gray-900/50">
+															{/* Animated background effect */}
+															<div className="absolute inset-0 overflow-hidden pointer-events-none">
+																<motion.div
+																	className="absolute inset-0 bg-[conic-gradient(from_90deg_at_50%_50%,#3b82f6_0%,#6366f1_25%,#3b82f6_50%,#6366f1_75%,#3b82f6_100%)] opacity-[0.03] dark:opacity-[0.05]"
+																	animate={{
+																		backgroundPosition:
+																			[
+																				"0%",
+																				"100%",
+																			],
+																	}}
+																	transition={{
+																		duration: 4,
+																		repeat: Infinity,
+																		ease: "linear",
+																	}}
+																/>
+															</div>
+
+															<div className="flex gap-2">
+																{[
+																	{
+																		format: "jpg" as const,
+																		icon: "🖼️",
+																		label: "Image",
+																	},
+																	{
+																		format: "pdf" as const,
+																		icon: "📄",
+																		label: "PDF",
+																	},
+																].map(
+																	(
+																		option
+																	) => (
+																		<motion.button
+																			key={
+																				option.format
+																			}
+																			onClick={() => {
+																				setSelectedFormat(
+																					option.format
+																				);
+																				handleDownload();
+																			}}
+																			className={`flex-1 py-3 px-4 rounded-full flex flex-col items-center justify-center relative overflow-hidden transition-all duration-200 ${
+																				selectedFormat ===
+																				option.format
+																					? "bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800"
+																					: "bg-white/50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+																			}`}
+																			whileHover={{
+																				scale: 1.03,
+																			}}
+																			whileTap={{
+																				scale: 0.97,
+																			}}
+																			initial={{
+																				opacity: 0,
+																				y: 10,
+																			}}
+																			animate={{
+																				opacity: 1,
+																				y: 0,
+																			}}
+																			transition={{
+																				delay: 0.1,
+																			}}
+																		>
+																			{/* Selection indicator */}
+																			{selectedFormat ===
+																				option.format && (
+																				<motion.div
+																					className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-purple-400"
+																					initial={{
+																						scaleX: 0,
+																					}}
+																					animate={{
+																						scaleX: 1,
+																					}}
+																					transition={{
+																						duration: 0.3,
+																					}}
+																				/>
+																			)}
+
+																			<motion.span
+																				className="text-2xl mb-1"
+																				animate={
+																					selectedFormat ===
+																					option.format
+																						? {
+																								y: [
+																									0,
+																									-5,
+																									0,
+																								],
+																								scale: [
+																									1,
+																									1.2,
+																									1,
+																								],
+																						  }
+																						: {}
+																				}
+																				transition={{
+																					duration: 1.5,
+																					repeat: Infinity,
+																					repeatType:
+																						"reverse",
+																				}}
+																			>
+																				{
+																					option.icon
+																				}
+																			</motion.span>
+
+																			<span
+																				className={`text-sm font-medium ${
+																					selectedFormat ===
+																					option.format
+																						? "text-blue-600 dark:text-blue-400"
+																						: "text-gray-600 dark:text-gray-300"
+																				}`}
+																			>
+																				{
+																					option.label
+																				}
+																			</span>
+
+																			{/* Hover effect */}
+																			<motion.div
+																				className="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-purple-400/10 opacity-0 hover:opacity-100 transition-opacity duration-300"
+																				initial={{
+																					opacity: 0,
+																				}}
+																				whileHover={{
+																					opacity: 1,
+																				}}
+																			/>
+																		</motion.button>
+																	)
+																)}
+															</div>
+														</div>
+
+														{/* Close button */}
+														<motion.button
+															onClick={() =>
+																setShowFormatSelector(
+																	false
+																)
+															}
+															className="w-full py-2 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 flex items-center justify-center gap-1"
+															whileHover={{
+																scale: 1.02,
+															}}
+															whileTap={{
+																scale: 0.98,
+															}}
+														>
+															<svg
+																xmlns="http://www.w3.org/2000/svg"
+																width="16"
+																height="16"
+																viewBox="0 0 24 24"
+																fill="none"
+																stroke="currentColor"
+																strokeWidth="2"
+																strokeLinecap="round"
+																strokeLinejoin="round"
+															>
+																<line
+																	x1="18"
+																	y1="6"
+																	x2="6"
+																	y2="18"
+																></line>
+																<line
+																	x1="6"
+																	y1="6"
+																	x2="18"
+																	y2="18"
+																></line>
+															</svg>
+															Close
+														</motion.button>
+													</div>
+
+													{/* Floating arrow pointer */}
+													<motion.div
+														className="absolute top-full left-1/2 w-4 h-4 bg-white dark:bg-gray-800 transform -translate-x-1/2 -translate-y-1/2 rotate-45 border-b border-r border-gray-200 dark:border-gray-700 shadow-sm"
+														initial={{ scale: 0 }}
+														animate={{ scale: 1 }}
+														transition={{
+															delay: 0.2,
+															type: "spring",
+														}}
+													/>
+												</motion.div>
+											)}
+										</AnimatePresence>
+
 										{/* Main download button */}
 										<motion.button
-											onClick={toggleFormatSelector}
+											onClick={() => {
+												if (isDownloading) return;
+												setShowFormatSelector(
+													!showFormatSelector
+												);
+											}}
 											disabled={isDownloading}
-											className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden"
-											whileHover={{ scale: 1.02 }}
-											whileTap={{ scale: 0.98 }}
+											className={`w-full py-3 px-6 rounded-full font-medium shadow-md relative overflow-hidden ${
+												isDownloading
+													? "bg-blue-500/90 dark:bg-blue-600/90 text-white"
+													: "bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white hover:shadow-lg"
+											}`}
+											whileHover={
+												!isDownloading
+													? { scale: 1.02 }
+													: {}
+											}
+											whileTap={
+												!isDownloading
+													? { scale: 0.98 }
+													: {}
+											}
 										>
 											{isDownloading ? (
 												<div className="flex items-center justify-center gap-2">
@@ -608,501 +859,60 @@ export default function Certificates() {
 												</div>
 											) : (
 												<>
-													<span className="relative z-10">
-														Download Certificate
+													<span className="relative z-10 flex items-center justify-center gap-2">
+														{showFormatSelector
+															? "Choose Format"
+															: "Download Certificate"}
+														<motion.span
+															animate={{
+																rotate: showFormatSelector
+																	? 180
+																	: 0,
+															}}
+															transition={{
+																type: "spring",
+																stiffness: 500,
+																damping: 15,
+															}}
+														>
+															<svg
+																xmlns="http://www.w3.org/2000/svg"
+																width="16"
+																height="16"
+																viewBox="0 0 24 24"
+																fill="none"
+																stroke="currentColor"
+																strokeWidth="2"
+																strokeLinecap="round"
+																strokeLinejoin="round"
+															>
+																<polyline points="6 9 12 15 18 9"></polyline>
+															</svg>
+														</motion.span>
 													</span>
-													<motion.span
+
+													{/* Button hover effect */}
+													<motion.div
 														className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 opacity-0 hover:opacity-100 transition-opacity duration-300"
 														initial={{ opacity: 0 }}
 														whileHover={{
 															opacity: 1,
 														}}
 													/>
+
+													{/* Subtle shimmer effect */}
+													<motion.div
+														className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full"
+														animate={{ x: "100%" }}
+														transition={{
+															duration: 1.5,
+															repeat: Infinity,
+															ease: "linear",
+														}}
+													/>
 												</>
 											)}
 										</motion.button>
-
-										{/* Animated format selector */}
-										{/* Enhanced Animated Format Selector - Positioned above download button */}
-										<AnimatePresence>
-											{showFormatSelector &&
-												!isDownloading && (
-													<motion.div
-														className="absolute -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full z-50"
-														initial={{
-															opacity: 0,
-															y: 20,
-															scale: 0.8,
-														}}
-														animate={{
-															opacity: 1,
-															y: 0,
-															scale: 1,
-															transition: {
-																type: "spring",
-																damping: 15,
-																stiffness: 400,
-																mass: 0.8,
-															},
-														}}
-														exit={{
-															opacity: 0,
-															y: 10,
-															scale: 0.9,
-															transition: {
-																duration: 0.2,
-																ease: "easeOut",
-															},
-														}}
-													>
-														{/* Popup container with enhanced visual effects */}
-														<div className="relative w-64 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-purple-200 dark:border-purple-900/30 overflow-hidden">
-															{/* Animated background effects */}
-															<div className="absolute inset-0 overflow-hidden pointer-events-none">
-																{/* Subtle gradient overlay */}
-																<motion.div
-																	className="absolute inset-0 bg-gradient-to-br from-purple-100/20 to-blue-100/10 dark:from-purple-900/10 dark:to-blue-900/5"
-																	animate={{
-																		background:
-																			[
-																				"linear-gradient(135deg, rgba(147,51,234,0.05) 0%, rgba(59,130,246,0.02) 100%)",
-																				"linear-gradient(225deg, rgba(147,51,234,0.05) 0%, rgba(59,130,246,0.02) 100%)",
-																				"linear-gradient(315deg, rgba(147,51,234,0.05) 0%, rgba(59,130,246,0.02) 100%)",
-																				"linear-gradient(45deg, rgba(147,51,234,0.05) 0%, rgba(59,130,246,0.02) 100%)",
-																			],
-																	}}
-																	transition={{
-																		duration: 8,
-																		repeat: Infinity,
-																		ease: "linear",
-																	}}
-																/>
-
-																{/* Subtle scanning line effect */}
-																<motion.div
-																	className="absolute h-px w-full bg-gradient-to-r from-transparent via-purple-400/20 to-transparent"
-																	initial={{
-																		y: 0,
-																	}}
-																	animate={{
-																		y: [
-																			"0%",
-																			"100%",
-																			"0%",
-																		],
-																	}}
-																	transition={{
-																		duration: 4,
-																		repeat: Infinity,
-																		ease: "linear",
-																	}}
-																/>
-
-																{/* Subtle grid pattern */}
-																<div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:16px_16px]" />
-															</div>
-
-															{/* Content container */}
-															<div className="relative p-4">
-																{/* Header with animated accent */}
-																<div className="relative mb-4">
-																	<motion.div
-																		className="absolute left-0 top-1/2 h-[2px] bg-gradient-to-r from-purple-400 to-blue-400"
-																		initial={{
-																			width: 0,
-																		}}
-																		animate={{
-																			width: "30%",
-																		}}
-																		transition={{
-																			duration: 0.4,
-																			ease: "easeOut",
-																		}}
-																	/>
-																	<motion.div
-																		className="absolute right-0 top-1/2 h-[2px] bg-gradient-to-l from-purple-400 to-blue-400"
-																		initial={{
-																			width: 0,
-																		}}
-																		animate={{
-																			width: "30%",
-																		}}
-																		transition={{
-																			duration: 0.4,
-																			ease: "easeOut",
-																		}}
-																	/>
-
-																	<motion.h4
-																		className="text-center text-gray-800 dark:text-gray-200 font-medium"
-																		initial={{
-																			opacity: 0,
-																			y: -10,
-																		}}
-																		animate={{
-																			opacity: 1,
-																			y: 0,
-																		}}
-																		transition={{
-																			delay: 0.2,
-																			duration: 0.3,
-																		}}
-																	>
-																		Choose
-																		the
-																		format
-																	</motion.h4>
-																</div>
-
-																{/* Format options with enhanced animations */}
-																<div className="flex gap-3 mb-4">
-																	{[
-																		{
-																			format: "jpg" as const,
-																			icon: "📸",
-																			label: "Image",
-																			subtitle:
-																				"JPG",
-																		},
-																		{
-																			format: "pdf" as const,
-																			icon: "📄",
-																			label: "Document",
-																			subtitle:
-																				"PDF",
-																		},
-																	].map(
-																		(
-																			option,
-																			index
-																		) => (
-																			<motion.button
-																				key={
-																					option.format
-																				}
-																				onClick={() => {
-																					setSelectedFormat(
-																						option.format
-																					);
-																					handleDownload();
-																				}}
-																				className="flex-1 relative"
-																				initial={{
-																					opacity: 0,
-																					y: 20,
-																				}}
-																				animate={{
-																					opacity: 1,
-																					y: 0,
-																					transition:
-																						{
-																							delay:
-																								0.1 +
-																								index *
-																									0.15,
-																							type: "spring",
-																							stiffness: 400,
-																						},
-																				}}
-																				whileHover={{
-																					scale: 1.04,
-																					transition:
-																						{
-																							type: "spring",
-																							stiffness: 400,
-																							damping: 10,
-																						},
-																				}}
-																				whileTap={{
-																					scale: 0.96,
-																				}}
-																			>
-																				{/* Background glow effect for selected option */}
-																				{selectedFormat ===
-																					option.format && (
-																					<motion.div
-																						className="absolute -inset-0.5 rounded-lg"
-																						initial={{
-																							opacity: 0,
-																						}}
-																						animate={{
-																							opacity: 1,
-																						}}
-																						exit={{
-																							opacity: 0,
-																						}}
-																					>
-																						<div className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-400 to-blue-500 opacity-30 blur-md" />
-																						<motion.div
-																							className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-400 to-blue-500 opacity-20 blur-sm"
-																							animate={{
-																								boxShadow:
-																									[
-																										"0 0 0px rgba(147,51,234,0.0)",
-																										"0 0 12px rgba(147,51,234,0.7)",
-																										"0 0 0px rgba(147,51,234,0.0)",
-																									],
-																							}}
-																							transition={{
-																								duration: 2,
-																								repeat: Infinity,
-																							}}
-																						/>
-																					</motion.div>
-																				)}
-
-																				{/* Button background */}
-																				<div
-																					className={`
-                  absolute inset-0 rounded-lg transition-colors duration-300
-                  ${
-						selectedFormat === option.format
-							? "bg-gradient-to-b from-purple-100 to-white dark:from-purple-900/40 dark:to-gray-800"
-							: "bg-gray-100 dark:bg-gray-700/50"
-					}
-                `}
-																				/>
-
-																				{/* Button border */}
-																				<div
-																					className={`
-                  absolute inset-0 rounded-lg border transition-colors duration-300
-                  ${
-						selectedFormat === option.format
-							? "border-purple-400 dark:border-purple-500"
-							: "border-gray-300 dark:border-gray-600"
-					}
-                `}
-																				/>
-
-																				{/* Content */}
-																				<div className="relative py-3 px-2 flex flex-col items-center">
-																					{/* Icon with advanced animation */}
-																					<motion.div
-																						className="text-2xl mb-1"
-																						animate={
-																							selectedFormat ===
-																							option.format
-																								? {
-																										scale: [
-																											1,
-																											1.2,
-																											1,
-																										],
-																										y: [
-																											0,
-																											-3,
-																											0,
-																										],
-																										rotateZ:
-																											[
-																												0,
-																												5,
-																												0,
-																												-5,
-																												0,
-																											],
-																								  }
-																								: {}
-																						}
-																						transition={{
-																							duration: 2.5,
-																							repeat: Infinity,
-																							repeatType:
-																								"reverse",
-																							ease: "easeInOut",
-																						}}
-																					>
-																						{
-																							option.icon
-																						}
-																					</motion.div>
-
-																					{/* Format name with glow effect when selected */}
-																					<div
-																						className={`
-                    text-xs font-medium transition-all duration-300
-                    ${
-						selectedFormat === option.format
-							? "text-purple-700 dark:text-purple-300 font-semibold"
-							: "text-gray-500 dark:text-gray-400"
-					}
-                  `}
-																					>
-																						{
-																							option.subtitle
-																						}
-
-																						{/* Underline animation for selected format */}
-																						{selectedFormat ===
-																							option.format && (
-																							<motion.div
-																								className="h-0.5 bg-purple-400 dark:bg-purple-500 rounded-full mt-1 mx-auto"
-																								initial={{
-																									width: 0,
-																								}}
-																								animate={{
-																									width: "100%",
-																								}}
-																								transition={{
-																									duration: 0.3,
-																									delay: 0.1,
-																								}}
-																							/>
-																						)}
-																					</div>
-																				</div>
-
-																				{/* Interactive ripple effect on click */}
-																				<motion.div
-																					className="absolute w-10 h-10 rounded-full bg-purple-400/30 dark:bg-purple-500/30 pointer-events-none"
-																					initial={{
-																						scale: 0,
-																						x: "-50%",
-																						y: "-50%",
-																					}}
-																					whileTap={{
-																						scale: 4,
-																						opacity: 0,
-																					}}
-																					transition={{
-																						duration: 0.5,
-																					}}
-																					style={{
-																						left: "50%",
-																						top: "50%",
-																						originX:
-																							"50%",
-																						originY:
-																							"50%",
-																					}}
-																				/>
-																			</motion.button>
-																		)
-																	)}
-																</div>
-
-																{/* Description text with typing animation */}
-																<motion.div
-																	className="text-xs text-gray-500 dark:text-gray-400 text-center mb-4 h-8 flex items-center justify-center"
-																	initial={{
-																		opacity: 0,
-																	}}
-																	animate={{
-																		opacity: 1,
-																	}}
-																	transition={{
-																		delay: 0.4,
-																	}}
-																>
-																	<motion.span
-																		initial={{
-																			opacity: 0,
-																		}}
-																		animate={{
-																			opacity: 1,
-																		}}
-																		transition={{
-																			staggerChildren: 0.015,
-																			delayChildren: 0.5,
-																		}}
-																	>
-																		{Array.from(
-																			"Your certificate will be downloaded in your selected format"
-																		).map(
-																			(
-																				char,
-																				i
-																			) => (
-																				<motion.span
-																					key={
-																						i
-																					}
-																					initial={{
-																						opacity: 0,
-																						y: 5,
-																					}}
-																					animate={{
-																						opacity: 1,
-																						y: 0,
-																					}}
-																				>
-																					{
-																						char
-																					}
-																				</motion.span>
-																			)
-																		)}
-																	</motion.span>
-																</motion.div>
-
-																{/* Cancel button with hover effects */}
-																<motion.button
-																	onClick={() =>
-																		setShowFormatSelector(
-																			false
-																		)
-																	}
-																	className="w-full py-2 rounded-lg text-purple-600 dark:text-purple-400 font-medium hover:text-purple-800 dark:hover:text-purple-300 border border-purple-300 dark:border-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all relative overflow-hidden group"
-																	initial={{
-																		opacity: 0,
-																		y: 10,
-																	}}
-																	animate={{
-																		opacity: 1,
-																		y: 0,
-																	}}
-																	transition={{
-																		delay: 0.6,
-																		type: "spring",
-																	}}
-																	whileHover={{
-																		scale: 1.01,
-																	}}
-																	whileTap={{
-																		scale: 0.98,
-																	}}
-																>
-																	{/* Button text */}
-																	<span className="relative z-10">
-																		Cancel
-																	</span>
-
-																	{/* Shimmer effect on hover */}
-																	<motion.div
-																		className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-1000 ease-in-out"
-																		initial={{
-																			x: "-100%",
-																		}}
-																		whileHover={{
-																			x: "100%",
-																		}}
-																		transition={{
-																			duration: 1,
-																		}}
-																	/>
-																</motion.button>
-															</div>
-
-															{/* Speech bubble tail - animated */}
-															<motion.div
-																className="absolute left-1/2 bottom-0 w-4 h-4 bg-white dark:bg-gray-800 transform -translate-x-1/2 translate-y-1/2 rotate-45 border-r border-b border-purple-200 dark:border-purple-900/30"
-																initial={{
-																	scale: 0,
-																}}
-																animate={{
-																	scale: 1,
-																}}
-																transition={{
-																	delay: 0.3,
-																	type: "spring",
-																	stiffness: 500,
-																}}
-															/>
-														</div>
-													</motion.div>
-												)}
-										</AnimatePresence>
 									</motion.div>
 								</div>
 							</motion.div>
