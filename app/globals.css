@@ -53,3 +53,55 @@ html, body {
 .animate-blink {
   animation: blink 1s step-end infinite;
 }
+
+
+/* Styles for Certificate Component */
+/* Modern scrollbar styles - add to global.css */
+/* Futuristic scrollbar styles - add to global.css */
+.futuristic-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.6) transparent;
+  -ms-overflow-style: none;
+}
+
+.futuristic-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+.futuristic-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  margin: 4px 0;
+}
+
+.futuristic-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #3b82f6, #6366f1);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+}
+
+.futuristic-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #2563eb, #4f46e5);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+}
+
+/* Hide scrollbar buttons in Webkit browsers */
+.futuristic-scrollbar::-webkit-scrollbar-button {
+  display: none;
+}
+
+.futuristic-scrollbar:hover::-webkit-scrollbar-thumb {
+  animation: glowPulse 2s infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.7);
+  }
+}

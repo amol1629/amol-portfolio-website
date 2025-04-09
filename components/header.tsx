@@ -12,7 +12,7 @@ export default function Header() {
 		useActiveSectionContext();
 
 	return (
-		<header className="z-[999] fixed top-4 left-1/2 -translate-x-1/2 w-full flex justify-center items-center px-4 pointer-events-none">
+		<header className="navbar z-[999] fixed top-3 left-1/2 -translate-x-1/2 w-full flex justify-center items-center px-4 pointer-events-none">
 			<motion.div
 				initial={{ y: -80, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
