@@ -24,13 +24,13 @@ interface Project {
 	points: string[];
 }
 
-// Enhanced modern animations
+// Enhanced animations
 const fadeIn = {
 	initial: { opacity: 0, y: 40 },
 	animate: {
 		opacity: 1,
 		y: 0,
-		transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] },
+		transition: { duration: 0.8, ease: [0.6, 0.05, 0.01, 0.9] },
 	},
 };
 
@@ -39,14 +39,14 @@ const projectContainer = {
 	show: {
 		opacity: 1,
 		transition: {
-			staggerChildren: 0.15,
+			staggerChildren: 0.2,
 			delayChildren: 0.3,
 		},
 	},
 };
 
 const projectItem = {
-	hidden: { opacity: 0, y: 30, scale: 0.9 },
+	hidden: { opacity: 0, y: 20, scale: 0.9 },
 	show: {
 		opacity: 1,
 		y: 0,
@@ -59,76 +59,14 @@ const projectItem = {
 		},
 	},
 	hover: {
-		y: -8,
-		transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] },
+		scale: 1.04,
+		y: -5,
+		boxShadow: "0 15px 30px rgba(0,0,0,0.1)",
+		transition: { duration: 0.3, ease: "easeOut" },
 	},
 };
 
-// Modern list item animations for initial load
-import { Variants } from "framer-motion";
-
-const listItemInitial: Variants = {
-	hidden: { opacity: 0, y: 15 },
-	visible: (i: number) => ({
-		opacity: 1,
-		y: 0,
-		transition: {
-			delay: i * 0.05,
-			duration: 0.4,
-			ease: [0.25, 0.1, 0.25, 1],
-		},
-	}),
-};
-
-// Futuristic animated expansion for additional points
-const listItemExpand = {
-	hidden: { opacity: 0, height: 0, marginTop: 0, scale: 0.95 },
-	visible: {
-		opacity: 1,
-		height: "auto",
-		marginTop: 12,
-		scale: 1,
-		transition: {
-			height: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
-			opacity: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] },
-			scale: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
-		},
-	},
-	exit: {
-		opacity: 0,
-		height: 0,
-		marginTop: 0,
-		scale: 0.95,
-		transition: {
-			height: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] },
-			opacity: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] },
-			scale: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] },
-		},
-	},
-};
-
-// Staggered reveal for expanded items
-const staggerContainer = {
-	hidden: { opacity: 1 },
-	show: {
-		opacity: 1,
-		transition: {
-			staggerChildren: 0.07,
-			delayChildren: 0.05,
-		},
-	},
-};
-
-const pointHighlight = {
-	hidden: { opacity: 0, width: "0%" },
-	show: {
-		opacity: 1,
-		width: "100%",
-		transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
-	},
-};
-
-// Interactive project card with enhanced modern UI animations
+// Interactive project card with enhanced UI
 const ProjectCard = ({
 	project,
 	index,
@@ -142,13 +80,10 @@ const ProjectCard = ({
 		threshold: 0.1,
 		triggerOnce: true,
 	});
-	const [expandedListRef, expandedInView] = useInView({
-		threshold: 0.1,
-		triggerOnce: false,
-	});
 
-	const initialVisiblePoints = project.points.slice(0, 3);
-	const expandedPoints = project.points.slice(3);
+	const visiblePoints = expanded
+		? project.points
+		: project.points.slice(0, 3);
 	const hasMorePoints = project.points.length > 3;
 	const delay = index * 0.2;
 
@@ -166,26 +101,24 @@ const ProjectCard = ({
         bg-white/10 dark:bg-[#0e101a]/60
         transition-all duration-500 ease-out"
 		>
+			{/* Glow on Hover */}
 			<div className="absolute inset-0 -z-10 pointer-events-none">
-				<div className="absolute -inset-2 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 ease-in-out bg-gradient-to-tr from-pink-400 via-purple-400 to-blue-400 dark:from-[#3b7ea1] dark:via-[#5e4b8b] dark:to-[#20435c]" />
+				<div className="absolute -inset-2 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-tr from-pink-400 via-purple-400 to-blue-400 dark:from-[#3b7ea1] dark:via-[#5e4b8b] dark:to-[#20435c]" />
 			</div>
 
-			{/* Modern glow effect on hover */}
-
-			{/* Modern animated accent line */}
+			{/* Animated accent line */}
 			<motion.div
-				initial={{ width: "0%", left: "50%", opacity: 0 }}
+				initial={{ width: "0%", opacity: 0 }}
 				animate={{
 					width: inView ? "100%" : "0%",
-					left: inView ? "0%" : "50%",
 					opacity: inView ? 1 : 0,
 				}}
 				transition={{
-					delay: delay + 0.2,
+					delay: delay + 0.3,
 					duration: 0.8,
-					ease: [0.25, 0.1, 0.25, 1],
+					ease: "easeOut",
 				}}
-				className="absolute top-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 dark:from-indigo-400 dark:via-purple-400 dark:to-blue-400"
+				className="absolute top-0 left-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-400"
 			/>
 
 			{/* Card Header with floating icon */}
@@ -193,28 +126,15 @@ const ProjectCard = ({
 				<motion.div
 					initial={{ y: 20, opacity: 0 }}
 					animate={{ y: inView ? 0 : 20, opacity: inView ? 1 : 0 }}
-					transition={{
-						delay: delay + 0.2,
-						duration: 0.5,
-						ease: [0.25, 0.1, 0.25, 1],
-					}}
+					transition={{ delay: delay + 0.2, duration: 0.5 }}
 					className="flex items-center gap-3"
 				>
 					<motion.div
-						whileHover={{
-							rotate: [0, 5, -5, 0],
-							scale: 1.1,
-							transition: {
-								rotate: {
-									duration: 0.6,
-									ease: "easeInOut",
-									repeat: 0,
-								},
-								scale: {
-									duration: 0.3,
-									ease: [0.25, 0.1, 0.25, 1],
-								},
-							},
+						whileHover={{ rotate: 5, scale: 1.1 }}
+						transition={{
+							type: "spring",
+							stiffness: 300,
+							damping: 10,
 						}}
 						className="p-3 rounded-2xl bg-gradient-to-br from-indigo-100 to-purple-100 
               dark:from-indigo-900/40 dark:to-purple-900/40
@@ -235,91 +155,29 @@ const ProjectCard = ({
 			{/* Card Content with animated list items */}
 			<div className="p-6 text-left h-full flex flex-col">
 				<ul className="list-none space-y-3 text-sm md:text-base flex-grow">
-					{/* Always visible points with modern reveal */}
-					{initialVisiblePoints.map((point, j) => (
+					{visiblePoints.map((point, j) => (
 						<motion.li
-							key={`initial-${j}`}
-							custom={j}
-							variants={listItemInitial}
-							initial="hidden"
-							animate={inView ? "visible" : "hidden"}
-							className="flex items-start group/item gap-2 text-gray-700 dark:text-gray-300 relative overflow-hidden"
+							key={j}
+							initial={{ opacity: 0, x: -15 }}
+							animate={{
+								opacity: inView ? 1 : 0,
+								x: inView ? 0 : -15,
+							}}
+							transition={{
+								delay: delay + 0.3 + j * 0.1,
+								duration: 0.5,
+							}}
+							className="flex items-start gap-2 text-gray-700 dark:text-gray-300"
 						>
 							<span className="text-indigo-500 dark:text-indigo-400 mt-0.5 flex-shrink-0">
 								•
 							</span>
-							<span className="relative">
-								{point}
-								{/* Modern highlight animation on hover */}
-								<motion.span
-									initial={{ scaleX: 0 }}
-									whileHover={{ scaleX: 1 }}
-									transition={{
-										duration: 0.3,
-										ease: [0.25, 0.1, 0.25, 1],
-									}}
-									className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-indigo-300/0 via-indigo-400/70 to-indigo-300/0 dark:from-indigo-500/0 dark:via-indigo-400/70 dark:to-indigo-500/0 origin-left"
-								/>
-							</span>
+							<span>{point}</span>
 						</motion.li>
 					))}
-
-					{/* Expandable points with futuristic enter/exit animations */}
-					<AnimatePresence>
-						{expanded && (
-							<motion.div
-								ref={expandedListRef}
-								variants={staggerContainer}
-								initial="hidden"
-								animate="show"
-								className="flex flex-col space-y-3"
-							>
-								{expandedPoints.map((point, j) => (
-									<motion.li
-										key={`expanded-${j}`}
-										variants={listItemExpand}
-										initial="hidden"
-										animate="visible"
-										exit="exit"
-										className="flex items-start group/item gap-2 text-gray-700 dark:text-gray-300 relative"
-									>
-										<motion.span
-											className="text-indigo-500 dark:text-indigo-400 mt-0.5 flex-shrink-0"
-											initial={{ opacity: 0, scale: 0 }}
-											animate={{ opacity: 1, scale: 1 }}
-											transition={{
-												duration: 0.3,
-												delay: j * 0.07,
-											}}
-										>
-											•
-										</motion.span>
-										<span className="relative">
-											{point}
-											{/* Modern highlight animation on hover */}
-											<motion.span
-												initial={{ scaleX: 0 }}
-												whileHover={{ scaleX: 1 }}
-												transition={{
-													duration: 0.3,
-													ease: [0.25, 0.1, 0.25, 1],
-												}}
-												className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-indigo-300/0 via-indigo-400/70 to-indigo-300/0 dark:from-indigo-500/0 dark:via-indigo-400/70 dark:to-indigo-500/0 origin-left"
-											/>
-										</span>
-										{/* Subtle entrance highlight */}
-										<motion.div
-											variants={pointHighlight}
-											className="absolute bottom-0 left-0 w-full h-full bg-indigo-200/10 dark:bg-indigo-700/10 rounded-lg -z-10"
-										/>
-									</motion.li>
-								))}
-							</motion.div>
-						)}
-					</AnimatePresence>
 				</ul>
 
-				{/* Modern futuristic show more/less button */}
+				{/* Animated show more/less button */}
 				{hasMorePoints && (
 					<motion.button
 						onClick={() => setExpanded(!expanded)}
@@ -355,38 +213,19 @@ const ProjectCard = ({
 				)}
 			</div>
 
-			{/* Enhanced modern decorative elements */}
-			<motion.div
-				animate={{
-					opacity: [0.3, 0.5, 0.3],
-					scale: [1, 1.05, 1],
-				}}
-				transition={{
-					duration: 4,
-					repeat: Infinity,
-					repeatType: "reverse",
-				}}
+			{/* Enhanced decorative elements */}
+			<div
 				className="absolute -bottom-12 -right-12 w-36 h-36 
-				bg-gradient-to-tl from-indigo-500/10 to-transparent 
-				dark:from-indigo-400/5 dark:to-transparent 
-				rounded-full blur-xl"
-			/>
+        bg-gradient-to-tl from-indigo-500/10 to-transparent 
+        dark:from-indigo-400/5 dark:to-transparent 
+        rounded-full blur-xl"
+			></div>
 
-			<motion.div
-				animate={{
-					opacity: [0.3, 0.6, 0.3],
-					scale: [1, 1.1, 1],
-				}}
-				transition={{
-					duration: 5,
-					repeat: Infinity,
-					repeatType: "reverse",
-					delay: 1,
-				}}
+			<div
 				className="absolute top-1/4 -left-6 w-12 h-12 
-				bg-purple-500/5 dark:bg-purple-400/5 
-				rounded-full blur-md"
-			/>
+        bg-purple-500/5 dark:bg-purple-400/5 
+        rounded-full blur-md opacity-70"
+			></div>
 		</motion.div>
 	);
 };
@@ -457,41 +296,27 @@ const ExperienceProjects = () => {
 			className="relative mb-28 sm:mb-40 max-w-6xl mx-auto px-4 sm:px-8 scroll-mt-28 text-center overflow-hidden py-24 rounded-3xl"
 		>
 			{/* Enhanced futuristic animated background */}
-			<div className="absolute inset-0 -z-10 overflow-hidden">
-				{/* Modernized gradient background with enhanced animation */}
-				<motion.div
-					animate={{
-						backgroundPosition: ["0% 0%", "100% 100%"],
-					}}
-					transition={{
-						duration: 20,
-						repeat: Infinity,
-						repeatType: "reverse",
-						ease: "linear",
-					}}
-					className="absolute top-[-40%] left-[-40%] w-[180%] h-[180%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-pink-100 via-sky-200 to-white dark:from-[#1f2937] dark:via-[#0f172a] dark:to-[#111827] blur-[120px] opacity-20"
-					style={{
-						backgroundSize: "200% 200%",
-					}}
-				/>
 
-				{/* Modern animated blobs with smoother motion */}
+			<div className="absolute inset-0 -z-10 overflow-hidden">
+				{/* Main gradient background */}
+				<div className="absolute top-[-40%] left-[-40%] w-[180%] h-[180%] animate-gradient-x bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-pink-100 via-sky-200 to-white dark:from-[#1f2937] dark:via-[#0f172a] dark:to-[#111827] blur-[120px] opacity-20"></div>
+
+				{/* Animated blobs */}
 				<motion.div
 					animate={{
 						x: [0, 30, -20, 10, 0],
 						y: [0, -30, 20, -10, 0],
 						scale: [1, 1.1, 0.9, 1.05, 1],
-						opacity: [0.2, 0.3, 0.2],
 					}}
 					transition={{
 						duration: 20,
 						ease: "easeInOut",
 						repeat: Infinity,
-						repeatType: "mirror",
+						repeatType: "reverse",
 					}}
 					className="absolute -top-20 -left-20 w-96 h-96 
-						bg-indigo-300/20 dark:bg-indigo-900/20 
-						rounded-full mix-blend-multiply filter blur-3xl"
+               bg-indigo-300/20 dark:bg-indigo-900/20 
+               rounded-full mix-blend-multiply filter blur-3xl opacity-30"
 				/>
 
 				<motion.div
@@ -499,17 +324,16 @@ const ExperienceProjects = () => {
 						x: [0, -30, 20, -10, 0],
 						y: [0, 20, -30, 10, 0],
 						scale: [1, 0.9, 1.1, 0.95, 1],
-						opacity: [0.2, 0.4, 0.2],
 					}}
 					transition={{
 						duration: 25,
 						ease: "easeInOut",
 						repeat: Infinity,
-						repeatType: "mirror",
+						repeatType: "reverse",
 					}}
 					className="absolute top-1/3 right-0 w-80 h-80 
-						bg-sky-300/20 dark:bg-sky-800/20 
-						rounded-full mix-blend-multiply filter blur-3xl"
+               bg-sky-300/20 dark:bg-sky-800/20 
+               rounded-full mix-blend-multiply filter blur-3xl opacity-30"
 				/>
 
 				<motion.div
@@ -517,60 +341,20 @@ const ExperienceProjects = () => {
 						x: [0, 20, -10, 30, 0],
 						y: [0, 10, -20, 30, 0],
 						scale: [1, 1.05, 0.95, 1.1, 1],
-						opacity: [0.2, 0.35, 0.2],
 					}}
 					transition={{
 						duration: 18,
 						ease: "easeInOut",
 						repeat: Infinity,
-						repeatType: "mirror",
+						repeatType: "reverse",
 					}}
 					className="absolute bottom-0 left-1/3 w-72 h-72 
-						bg-purple-300/20 dark:bg-purple-800/20 
-						rounded-full mix-blend-multiply filter blur-3xl"
+               bg-purple-300/20 dark:bg-purple-800/20 
+               rounded-full mix-blend-multiply filter blur-3xl opacity-30"
 				/>
-
-				{/* Modern particle-like elements */}
-				<div className="absolute inset-0 overflow-hidden">
-					{[...Array(8)].map((_, i) => (
-						<motion.div
-							key={i}
-							initial={{
-								x: Math.random() * 100 - 50 + "%",
-								y: Math.random() * 100 - 50 + "%",
-								opacity: 0.1 + Math.random() * 0.3,
-								scale: 0.2 + Math.random() * 0.8,
-							}}
-							animate={{
-								x: [
-									Math.random() * 100 - 50 + "%",
-									Math.random() * 100 - 50 + "%",
-									Math.random() * 100 - 50 + "%",
-								],
-								y: [
-									Math.random() * 100 - 50 + "%",
-									Math.random() * 100 - 50 + "%",
-									Math.random() * 100 - 50 + "%",
-								],
-								opacity: [
-									0.1 + Math.random() * 0.3,
-									0.2 + Math.random() * 0.3,
-									0.1 + Math.random() * 0.3,
-								],
-							}}
-							transition={{
-								duration: 15 + Math.random() * 15,
-								ease: "easeInOut",
-								repeat: Infinity,
-								repeatType: "reverse",
-							}}
-							className="absolute w-6 h-6 rounded-full bg-indigo-400/10 dark:bg-indigo-300/10 blur-md"
-						/>
-					))}
-				</div>
 			</div>
 
-			{/* Enhanced heading section with modern animations */}
+			{/* Enhanced heading section with animations */}
 			<motion.div
 				variants={fadeIn}
 				initial="initial"
@@ -578,61 +362,38 @@ const ExperienceProjects = () => {
 				viewport={{ once: true }}
 				className="mb-16 relative z-10"
 			>
-				{/* Modern decorative geometric shapes */}
+				{/* Decorative geometric shapes */}
 				<motion.div
-					initial={{ opacity: 0, scale: 0.5, rotate: 0 }}
-					animate={{ opacity: 0.6, scale: 1, rotate: 12 }}
-					transition={{
-						delay: 0.2,
-						duration: 1.5,
-						rotate: {
-							duration: 20,
-							repeat: Infinity,
-							repeatType: "reverse",
-							ease: "linear",
-						},
-					}}
-					className="absolute -top-10 right-10 sm:right-20 w-8 h-8 border-2 border-indigo-300/30 dark:border-indigo-700/50"
+					initial={{ opacity: 0, scale: 0.5 }}
+					animate={{ opacity: 0.6, scale: 1 }}
+					transition={{ delay: 0.2, duration: 1.5 }}
+					className="absolute -top-10 right-10 sm:right-20 w-8 h-8 border-2 border-indigo-300/30 dark:border-indigo-700/50 rotate-12"
 				/>
 				<motion.div
 					initial={{ opacity: 0, scale: 0.5 }}
-					animate={{
-						opacity: 0.6,
-						scale: 1,
-						y: [0, -10, 0],
-					}}
-					transition={{
-						delay: 0.3,
-						duration: 1.5,
-						y: {
-							duration: 5,
-							repeat: Infinity,
-							repeatType: "reverse",
-							ease: "easeInOut",
-						},
-					}}
+					animate={{ opacity: 0.6, scale: 1 }}
+					transition={{ delay: 0.3, duration: 1.5 }}
 					className="absolute top-20 left-10 sm:left-40 w-6 h-6 rounded-full border-2 border-purple-300/30 dark:border-purple-700/50"
 				/>
 				<motion.div
-					initial={{ opacity: 0, scale: 0.5, rotate: 0 }}
-					animate={{
-						opacity: 0.6,
-						scale: 1,
-						rotate: -12,
-						x: [0, 10, 0, -10, 0],
-					}}
-					transition={{
-						delay: 0.4,
-						duration: 1.5,
-						x: {
-							duration: 8,
-							repeat: Infinity,
-							repeatType: "reverse",
-							ease: "easeInOut",
-						},
-					}}
-					className="absolute top-10 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-md border-2 border-blue-300/30 dark:border-blue-700/50"
+					initial={{ opacity: 0, scale: 0.5 }}
+					animate={{ opacity: 0.6, scale: 1 }}
+					transition={{ delay: 0.4, duration: 1.5 }}
+					className="absolute top-10 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-md border-2 border-blue-300/30 dark:border-blue-700/50 -rotate-12"
 				/>
+
+				{/* Enhanced heading with gradient text */}
+				{/* <motion.h2
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.1, duration: 0.7 }}
+					className="text-3xl md:text-4xl lg:text-5xl font-bold 
+            bg-clip-text text-transparent bg-gradient-to-r 
+            from-indigo-600 via-purple-600 to-blue-600
+            dark:from-indigo-400 dark:via-purple-300 dark:to-blue-400"
+				>
+					Professional Projects
+				</motion.h2> */}
 
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
@@ -644,35 +405,29 @@ const ExperienceProjects = () => {
 					<SectionHeading>Professional Projects</SectionHeading>
 				</motion.div>
 
-				{/* Modern animated introduction text */}
+				{/* Animated underline */}
+				{/* <motion.div
+					initial={{ width: 0, opacity: 0 }}
+					animate={{ width: "5rem", opacity: 1 }}
+					transition={{ delay: 0.6, duration: 0.8 }}
+					className="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-400 mx-auto mt-5 rounded-full"
+				/> */}
+
+				{/* Enhanced introduction text */}
 				<motion.p
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
-					transition={{
-						delay: 0.7,
-						duration: 0.7,
-						ease: [0.25, 0.1, 0.25, 1],
-					}}
-					className="text-gray-700 dark:text-gray-300 mt-8 max-w-3xl mx-auto text-lg relative"
+					transition={{ delay: 0.7, duration: 0.7 }}
+					className="text-gray-700 dark:text-gray-300 mt-8 max-w-3xl mx-auto text-lg"
 				>
 					I have worked on several client and other major projects
 					throughout my professional career, delivering robust
 					solutions and innovative features tailored to specific
 					business needs. The following showcases represent some of my
 					most impactful work:
-					{/* Subtle decorative underline */}
-					<motion.span
-						initial={{ scaleX: 0, opacity: 0 }}
-						animate={{ scaleX: 1, opacity: 1 }}
-						transition={{
-							delay: 1.2,
-							duration: 0.8,
-							ease: [0.25, 0.1, 0.25, 1],
-						}}
-						className="absolute -bottom-2 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-indigo-300/50 to-transparent dark:via-indigo-500/30 origin-left"
-					/>
 				</motion.p>
 			</motion.div>
+
 			{/* Responsive project card grid with staggered animations */}
 			<motion.div
 				variants={projectContainer}
