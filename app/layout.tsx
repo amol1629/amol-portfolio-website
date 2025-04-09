@@ -1,14 +1,11 @@
-"use client";
-
+import Header from "@/components/header";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import Header from "@/components/header";
+import ActiveSectionContextProvider from "@/context/active-section-context";
 import Footer from "@/components/footer";
 import ThemeSwitch from "@/components/theme-switch";
-import ActiveSectionContextProvider from "@/context/active-section-context";
 import ThemeContextProvider from "@/context/theme-context";
 import { Toaster } from "react-hot-toast";
-import BubbleBackground from "@/components/bubble-background";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,13 +25,12 @@ export default function RootLayout({
 			<body
 				className={`${inter.className} bg-gray-50 text-gray-950 relative pt-28 sm:pt-36 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90`}
 			>
-				{/* Floating Bubbles Background */}
-				<BubbleBackground />
+			
 
 				<ThemeContextProvider>
 					<ActiveSectionContextProvider>
 						<Header />
-						<main className="relative z-10">{children}</main>
+						{children}
 						<Footer />
 
 						<Toaster position="top-right" />
