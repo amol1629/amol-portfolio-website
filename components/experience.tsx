@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useInView } from "react-intersection-observer";
 import SectionHeading from "./section-heading";
 import {
 	VerticalTimeline,
@@ -25,6 +26,13 @@ export default function Experience() {
 	// const { ref } = useSectionInView("Experience");
 	const { ref } = useSectionInView("Experience", 0.3); // or Experience
 	const { theme } = useTheme();
+
+	const [cardRef, inView] = useInView({
+		threshold: 0.1,
+		triggerOnce: true,
+	});
+
+	const delay = 0.5;
 
 	return (
 		<section
@@ -107,6 +115,20 @@ export default function Experience() {
 									className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500
       bg-[radial-gradient(ellipse_at_center,_rgba(59,130,246,0.15)_0%,_transparent_70%)]
       z-0"
+								/>
+
+								<motion.div
+									initial={{ width: "0%", opacity: 0 }}
+									animate={{
+										width: inView ? "100%" : "0%",
+										opacity: inView ? 1 : 0,
+									}}
+									transition={{
+										delay: delay + 0.3,
+										duration: 0.8,
+										ease: "easeOut",
+									}}
+									className="absolute top-0 left-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-400"
 								/>
 
 								{/* ✅ Text Container - stays crisp */}
