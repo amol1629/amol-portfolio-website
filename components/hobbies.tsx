@@ -20,15 +20,20 @@ import { BsMusicNoteBeamed } from "react-icons/bs";
 
 const hobbies = [
 	{
-		name: "Traveling",
-		icon: <MdTravelExplore className="text-teal-400" />,
-		description: "Exploring new places and cultures",
-	},
-	{
 		name: "Reading",
 		icon: <MdLibraryBooks className="text-indigo-400" />,
 		description:
 			"Exploring thought-provoking, motivational, and spiritual reads",
+	},
+	{
+		name: "Meditation",
+		icon: <GiMeditation className="text-blue-300" />,
+		description: "Staying mindful and mentally fresh",
+	},
+	{
+		name: "Traveling",
+		icon: <MdTravelExplore className="text-teal-400" />,
+		description: "Exploring new places and cultures",
 	},
 
 	// {
@@ -46,11 +51,7 @@ const hobbies = [
 	// 	icon: <MdBrush className="text-purple-500" />,
 	// 	description: "Sketching futuristic concepts and designs",
 	// },
-	{
-		name: "Meditation",
-		icon: <GiMeditation className="text-blue-300" />,
-		description: "Staying mindful and mentally fresh",
-	},
+
 	// {
 	// 	name: "Hiking",
 	// 	icon: <FaHiking className="text-green-500" />,

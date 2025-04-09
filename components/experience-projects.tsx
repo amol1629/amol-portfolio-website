@@ -76,13 +76,10 @@ const ProjectCard = ({
 		triggerOnce: true,
 	});
 
-	// Show only first 3 points by default for better mobile experience
 	const visiblePoints = expanded
 		? project.points
 		: project.points.slice(0, 3);
 	const hasMorePoints = project.points.length > 3;
-
-	// Random delay for staggered animations
 	const delay = index * 0.2;
 
 	return (
@@ -94,13 +91,12 @@ const ProjectCard = ({
 			whileHover="hover"
 			custom={index}
 			transition={{ delay }}
-			className="w-full sm:w-[85%] md:w-[45%] lg:w-[30%] h-full relative group overflow-hidden rounded-3xl shadow-xl backdrop-blur-sm 
-        bg-gradient-to-br from-white/90 to-white/50 
-        dark:from-gray-900/80 dark:to-gray-800/50 
-        border border-white/20 dark:border-gray-700/30 
+			className="w-full sm:w-[85%] md:w-[45%] lg:w-[30%] h-full relative group overflow-hidden rounded-3xl shadow-xl 
+        backdrop-blur-sm border border-white/10 
+        bg-white/10 dark:bg-[#0e101a]/60
         transition-all duration-500 ease-out"
 		>
-			{/* Enhanced glow effect on hover */}
+			{/* Glow on Hover */}
 			<div className="absolute inset-0 -z-10 pointer-events-none">
 				<div className="absolute -inset-2 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-tr from-pink-400 via-purple-400 to-blue-400 dark:from-[#3b7ea1] dark:via-[#5e4b8b] dark:to-[#20435c]" />
 			</div>
@@ -121,7 +117,7 @@ const ProjectCard = ({
 			/>
 
 			{/* Card Header with floating icon */}
-			<div className="relative p-6 pb-4 border-b border-gray-100/30 dark:border-gray-700/30">
+			<div className="relative p-6 pb-4 border-b border-white/10">
 				<motion.div
 					initial={{ y: 20, opacity: 0 }}
 					animate={{ y: inView ? 0 : 20, opacity: inView ? 1 : 0 }}
@@ -194,7 +190,7 @@ const ProjectCard = ({
 					>
 						{expanded
 							? "Show less"
-							: `+${project.points.length - 3} more`}
+							: `Show more`}
 						<motion.svg
 							xmlns="http://www.w3.org/2000/svg"
 							className={`h-3.5 w-3.5 transition-transform duration-300`}
@@ -232,7 +228,7 @@ const ProjectCard = ({
 };
 
 const ExperienceProjects = () => {
-	const { ref } = useSectionInView("Experience-Projects", 0.1);
+	const { ref } = useSectionInView("Professional Projects", 0.1);
 	const { theme } = useTheme();
 	const [isMounted, setIsMounted] = useState(false);
 
@@ -292,21 +288,15 @@ const ExperienceProjects = () => {
 
 	return (
 		<section
-			id="experience-projects"
+			id="professional-projects"
 			ref={ref}
 			className="relative mb-28 sm:mb-40 max-w-6xl mx-auto px-4 sm:px-8 scroll-mt-28 text-center overflow-hidden py-24 rounded-3xl"
 		>
 			{/* Enhanced futuristic animated background */}
+
 			<div className="absolute inset-0 -z-10 overflow-hidden">
 				{/* Main gradient background */}
-				<div
-					className="absolute top-[-40%] left-[-40%] w-[180%] h-[180%] 
-          animate-gradient-x 
-          bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] 
-          from-indigo-50 via-blue-50 to-white 
-          dark:from-gray-900 dark:via-gray-950 dark:to-black 
-          blur-[100px] opacity-30"
-				/>
+				<div className="absolute top-[-40%] left-[-40%] w-[180%] h-[180%] animate-gradient-x bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-pink-100 via-sky-200 to-white dark:from-[#1f2937] dark:via-[#0f172a] dark:to-[#111827] blur-[120px] opacity-20"></div>
 
 				{/* Animated blobs */}
 				<motion.div
@@ -322,8 +312,8 @@ const ExperienceProjects = () => {
 						repeatType: "reverse",
 					}}
 					className="absolute -top-20 -left-20 w-96 h-96 
-            bg-indigo-300/20 dark:bg-indigo-900/20 
-            rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+               bg-indigo-300/20 dark:bg-indigo-900/20 
+               rounded-full mix-blend-multiply filter blur-3xl opacity-30"
 				/>
 
 				<motion.div
@@ -339,8 +329,8 @@ const ExperienceProjects = () => {
 						repeatType: "reverse",
 					}}
 					className="absolute top-1/3 right-0 w-80 h-80 
-            bg-sky-300/20 dark:bg-sky-800/20 
-            rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+               bg-sky-300/20 dark:bg-sky-800/20 
+               rounded-full mix-blend-multiply filter blur-3xl opacity-30"
 				/>
 
 				<motion.div
@@ -356,8 +346,8 @@ const ExperienceProjects = () => {
 						repeatType: "reverse",
 					}}
 					className="absolute bottom-0 left-1/3 w-72 h-72 
-            bg-purple-300/20 dark:bg-purple-800/20 
-            rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+               bg-purple-300/20 dark:bg-purple-800/20 
+               rounded-full mix-blend-multiply filter blur-3xl opacity-30"
 				/>
 			</div>
 

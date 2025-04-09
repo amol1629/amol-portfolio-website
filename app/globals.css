@@ -10,6 +10,12 @@ html.dark {
   --line-color: rgba(255, 255, 255, 0.2);
 }
 
+html, body {
+	transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+
+
 .borderBlack {
   @apply border border-black/10;
 }

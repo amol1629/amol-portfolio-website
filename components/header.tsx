@@ -24,7 +24,7 @@ export default function Header() {
           transition-colors duration-300"
 			>
 				<nav className="w-full">
-					<ul className="flex flex-wrap justify-center items-center gap-x-1 gap-y-1 sm:gap-x-2 py-1 text-sm font-medium">
+					<ul className="flex flex-wrap justify-center items-center mx-auto gap-x-1 gap-y-1 sm:gap-x-3 py-1 text-sm font-medium w-fit">
 						{links.map((link, index) => (
 							<motion.li
 								key={link.hash}
