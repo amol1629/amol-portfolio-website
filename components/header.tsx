@@ -33,7 +33,7 @@ export default function Header() {
 			>
 				<nav className="w-full flex justify-between items-center">
 					{/* Logo: Profile photo + Name */}
-					{/* Logo for small screens only */}
+
 					<motion.div
 						initial={{ opacity: 0, x: -20 }}
 						animate={{ opacity: 1, x: 0 }}
