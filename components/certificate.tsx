@@ -197,7 +197,7 @@ export default function Certificates() {
 	useEffect(() => {
 		if (selectedCertificate) {
 			document.body.style.overflow = "hidden";
-			const navbar = document.querySelector("nav");
+			const navbar = document.querySelector(".navbar") as HTMLElement;
 			if (navbar) navbar.style.display = "none";
 
 			// Show particles after a delay
@@ -205,7 +205,7 @@ export default function Certificates() {
 			return () => clearTimeout(timer);
 		} else {
 			document.body.style.overflow = "auto";
-			const navbar = document.querySelector("nav");
+			const navbar = document.querySelector(".navbar") as HTMLElement | null;
 			if (navbar) navbar.style.display = "flex";
 			setShowFormatSelector(false);
 		}
@@ -445,11 +445,11 @@ export default function Certificates() {
 						)}
 
 						<motion.div
-							className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8"
+							className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 "
 							onClick={(e) => e.stopPropagation()}
 						>
 							<motion.div
-								className="relative bg-white dark:bg-gray-900 rounded-2xl p-6 max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl border border-white/20 dark:border-gray-700/30"
+								className="relative bg-white dark:bg-gray-900 rounded-2xl p-4 sm:p-6 max-w-4xl w-full  md:h-auto max-h-[90vh] flex flex-col shadow-2xl border border-white/20 dark:border-gray-700/30"
 								variants={modalVariants}
 								initial="hidden"
 								animate="visible"
@@ -465,7 +465,7 @@ export default function Certificates() {
 								{/* Close button with futuristic animation */}
 								<motion.button
 									onClick={closeModal}
-									className="absolute right-4 top-4 z-10 p-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200 group border border-white/30 dark:border-gray-700/30 shadow-sm"
+									className="absolute right-2 sm:right-4 top-2 sm:top-4 z-10 p-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200 group border border-white/30 dark:border-gray-700/30 shadow-sm"
 									whileHover={{ scale: 1.1, rotate: 90 }}
 									whileTap={{ scale: 0.95 }}
 									transition={{
@@ -480,7 +480,7 @@ export default function Certificates() {
 										viewBox="0 0 24 24"
 										strokeWidth={2}
 										stroke="currentColor"
-										className="w-5 h-5 text-gray-800 dark:text-gray-200"
+										className="w-4 h-4 sm:w-5 sm:h-5 text-gray-800 dark:text-gray-200"
 									>
 										<path
 											strokeLinecap="round"
@@ -490,10 +490,10 @@ export default function Certificates() {
 									</svg>
 								</motion.button>
 
-								{/* Certificate content */}
-								<div className="p-4 flex flex-col items-center h-full">
+								{/* Certificate content with scroll container */}
+								<div className="flex-1 flex flex-col min-h-0 overflow-hidden">
 									<motion.h3
-										className="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center"
+										className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 text-center px-4"
 										initial={{ opacity: 0, y: -10 }}
 										animate={{ opacity: 1, y: 0 }}
 										transition={{
@@ -505,54 +505,53 @@ export default function Certificates() {
 										{selectedCertificate.name}
 									</motion.h3>
 
-									<div className="w-full mb-6 flex justify-center items-center">
-										<div className="relative max-h-[60vh] rounded-lg">
-											<motion.div
-												initial={{
-													scale: 0.98,
-													opacity: 0,
-												}}
-												animate={{
-													scale: 1,
-													opacity: 1,
-												}}
-												transition={{
-													duration: 0.6,
-													ease: [0.22, 1, 0.36, 1],
-													delay: 0.3,
-												}}
-												className="relative h-full"
-											>
-												<Image
-													src={
-														selectedCertificate.image
-													}
-													alt={
-														selectedCertificate.name
-													}
-													width={800}
-													height={600}
-													className="rounded-lg object-contain max-h-[60vh] shadow-lg"
-													style={{ maxWidth: "100%" }}
-												/>
-												{/* Holographic overlay effect */}
-												<div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(59,130,246,0.1)_0%,transparent_50%,rgba(59,130,246,0.1)_100%)] pointer-events-none"></div>
-											</motion.div>
-										</div>
-									</div>
-
-									{/* Download section with animated format selector */}
-									{/* Download section with animated format selector */}
+									{/* Scrollable content area with custom scrollbar */}
 									<motion.div
-										className="relative w-full max-w-md"
-										initial={{ opacity: 0, y: 20 }}
-										animate={{ opacity: 1, y: 0 }}
-										transition={{
-											delay: 0.4,
-											duration: 0.6,
-											ease: [0.22, 1, 0.36, 1],
-										}}
+										className="flex-1 overflow-y-auto min-h-0 scroll-smooth px-4 flex flex-col items-center futuristic-scrollbar rounded-2xl"
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										transition={{ delay: 0.1 }}
 									>
+										<div className="w-full mb-6 flex justify-center items-center">
+											<div className="relative max-h-[40vh] sm:max-h-[50vh] md:max-h-[60vh] rounded-2xl">
+												<motion.div
+													initial={{
+														scale: 0.98,
+														opacity: 0,
+													}}
+													animate={{
+														scale: 1,
+														opacity: 1,
+													}}
+													transition={{
+														duration: 0.6,
+														ease: [
+															0.22, 1, 0.36, 1,
+														],
+														delay: 0.3,
+													}}
+													className="relative h-full rounded-2xl"
+												>
+													<Image
+														src={
+															selectedCertificate.image
+														}
+														alt={
+															selectedCertificate.name
+														}
+														width={800}
+														height={600}
+														className="rounded-2xl object-contain max-h-[40vh] sm:max-h-[50vh] md:max-h-[60vh] shadow-lg"
+														style={{
+															maxWidth: "100%",
+														}}
+													/>
+													{/* Holographic overlay effect */}
+													<div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(59,130,246,0.1)_0%,transparent_50%,rgba(59,130,246,0.1)_100%)] pointer-events-none rounded-2xl"></div>
+												</motion.div>
+											</div>
+										</div>
+
 										{/* View original link */}
 										<div className="mb-4 text-center">
 											<Link
@@ -584,12 +583,24 @@ export default function Certificates() {
 												</svg>
 											</Link>
 										</div>
+									</motion.div>
 
+									{/* Download section - Fixed at bottom */}
+									<motion.div
+										className="relative w-full max-w-md mx-auto p-4 mt-auto"
+										initial={{ opacity: 0, y: 20 }}
+										animate={{ opacity: 1, y: 0 }}
+										transition={{
+											delay: 0.4,
+											duration: 0.6,
+											ease: [0.22, 1, 0.36, 1],
+										}}
+									>
 										{/* Format selector floating above button */}
 										<AnimatePresence>
 											{showFormatSelector && (
 												<motion.div
-													className="absolute bottom-full left-0 right-0 mb-4 z-10"
+													className="absolute bottom-full left-0 right-0 mb-4 z-10 px-4 sm:px-0"
 													initial={{
 														opacity: 0,
 														y: 20,
@@ -659,7 +670,7 @@ export default function Certificates() {
 																				);
 																				handleDownload();
 																			}}
-																			className={`flex-1 py-3 px-4 rounded-full flex flex-col items-center justify-center relative overflow-hidden transition-all duration-200 ${
+																			className={`flex-1 py-2 sm:py-3 px-2 sm:px-4 rounded-full flex flex-col items-center justify-center relative overflow-hidden transition-all duration-200 ${
 																				selectedFormat ===
 																				option.format
 																					? "bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800"
@@ -701,7 +712,7 @@ export default function Certificates() {
 																			)}
 
 																			<motion.span
-																				className="text-2xl mb-1"
+																				className="text-xl sm:text-2xl mb-1"
 																				animate={
 																					selectedFormat ===
 																					option.format
@@ -732,7 +743,7 @@ export default function Certificates() {
 																			</motion.span>
 
 																			<span
-																				className={`text-sm font-medium ${
+																				className={`text-xs sm:text-sm font-medium ${
 																					selectedFormat ===
 																					option.format
 																						? "text-blue-600 dark:text-blue-400"
@@ -826,7 +837,7 @@ export default function Certificates() {
 												);
 											}}
 											disabled={isDownloading}
-											className={`w-full py-3 px-6 rounded-full font-medium shadow-md relative overflow-hidden ${
+											className={`w-full py-2 sm:py-3 px-4 sm:px-6 rounded-full font-medium shadow-md relative overflow-hidden ${
 												isDownloading
 													? "bg-blue-500/90 dark:bg-blue-600/90 text-white"
 													: "bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white hover:shadow-lg"

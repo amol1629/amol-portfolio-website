@@ -24,7 +24,7 @@ export default function Header() {
 		"backdrop-blur-lg border border-white/20 dark:border-white/10 bg-white/60 dark:bg-[#0f0f0f]/70 shadow-lg dark:shadow-[0_0_25px_rgba(0,0,0,0.4)] transition-colors duration-300";
 
 	return (
-		<header className="z-[999] fixed top-4 left-1/2 -translate-x-1/2 w-full flex justify-center items-center px-4 pointer-events-none">
+		<header className="navbar z-[999] fixed top-3 left-1/2 -translate-x-1/2 w-full flex justify-center items-center px-4 pointer-events-none">
 			<motion.div
 				initial={{ y: -80, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
