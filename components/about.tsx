@@ -19,16 +19,16 @@ export default function About() {
 		>
 			<SectionHeading>About me</SectionHeading>
 			<p className="mb-3">
-				Hi, I'm <span className="font-medium">Amol Rathod</span> — a
+				Hi, I'm <span className="font-extrabold">Amol Rathod</span> — a
 				passionate{" "}
-				<span className="font-medium">Front-End Developer</span> based
+				<span className="font-bold">Front-End Developer</span> based
 				in Pune, Maharashtra. I specialize in crafting seamless,
 				scalable, and performance-driven web experiences using modern
 				technologies like{" "}
 				<span className="font-bold">
 					JavaScript, React, Next.js, Tailwind CSS
 				</span>
-				, and <span className="font-medium">ShadCN</span>.
+				, and <span className="font-bold">ShadCN</span>.
 			</p>
 
 			<p className="mb-3">
@@ -45,15 +45,15 @@ export default function About() {
 
 			<p className="mb-3">
 				Whether it's an{" "}
-				<span className="font-medium">e-commerce platform</span> like{" "}
+				<span className="font-bold">e-commerce platform</span> like{" "}
 				<em>PentKart</em> or an{" "}
-				<span className="font-medium">AI-enhanced feedback tool</span>
+				<span className="font-bold">AI-enhanced feedback tool </span>
 				like <em>True Feedback</em>, I love solving real-world problems
 				with thoughtful UI design and modern development practices. My
 				core stack also includes{" "}
-				<span className="font-medium">Node.js and MongoDB</span>, and
+				<span className="font-bold">Node.js and MongoDB</span>, and
 				I'm familiar with{" "}
-				<span className="font-medium">
+				<span className="font-bold">
 					TypeScript, Vue.js, and Redux
 				</span>
 				.
@@ -61,9 +61,9 @@ export default function About() {
 
 			<p className="mb-3">
 				When I'm not coding, I enjoy{" "}
-				<span className="font-medium">reading books</span>, watching
+				<span className="font-bold">reading books</span>, watching
 				documentaries, and diving into{" "}
-				<span className="font-medium">history and philosophy</span>. I'm
+				<span className="font-bold">history and philosophy</span>. I'm
 				 always exploring
 				new technologies to stay ahead in this ever-evolving field.
 			</p>
