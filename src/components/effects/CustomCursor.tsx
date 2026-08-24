@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
-import { useReducedMotion } from "@/hooks";
+import { useMediaQuery, useReducedMotion } from "@/hooks";
 import type { ReactNode } from "react";
 
 interface CustomCursorProps {
@@ -19,6 +19,7 @@ export function CustomCursor({
   const [isHovering, setIsHovering] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
   const prefersReducedMotion = useReducedMotion();
+  const isMobilePointer = useMediaQuery("(max-width: 767px), (hover: none), (pointer: coarse)");
 
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
@@ -30,7 +31,7 @@ export function CustomCursor({
   const hoverTargetRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || isMobilePointer) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       cursorX.set(e.clientX);
@@ -80,9 +81,9 @@ export function CustomCursor({
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [cursorX, cursorY, prefersReducedMotion]);
+  }, [cursorX, cursorY, prefersReducedMotion, isMobilePointer]);
 
-  if (prefersReducedMotion) return null;
+  if (prefersReducedMotion || isMobilePointer) return null;
 
   return (
     <>
