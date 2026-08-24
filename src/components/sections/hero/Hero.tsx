@@ -22,7 +22,7 @@ export function Hero(): ReactNode {
       aria-label="Introduction"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
     >
-      <div className="container-custom relative z-10 py-24 md:py-32">
+      <div className="container-custom relative z-10 pt-14 pb-24 md:py-32">
         <HeroClient content={HERO_CONTENT} />
       </div>
     </section>
