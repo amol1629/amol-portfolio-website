@@ -1,0 +1,55 @@
+import type { GlassAccent } from "@/components/shared";
+
+export const TECH_ICONS: Record<string, string> = {
+  "React": "logos:react",
+  "React 19": "logos:react",
+  "Next.js": "logos:nextjs-icon",
+  "Next.js 15": "logos:nextjs-icon",
+  "TypeScript": "logos:typescript-icon",
+  "JavaScript": "logos:javascript",
+  "Node.js": "logos:nodejs-icon",
+  "Express": "simple-icons:express",
+  "MongoDB": "logos:mongodb-icon",
+  "GraphQL": "logos:graphql",
+  "Tailwind CSS": "logos:tailwindcss-icon",
+  "Tailwind": "logos:tailwindcss-icon",
+  "Framer Motion": "simple-icons:framer",
+  "Redux": "logos:redux",
+  "Azure": "logos:microsoft-azure",
+  "AWS": "logos:aws",
+  "OpenAI API": "simple-icons:openai",
+  "ChatGPT API": "simple-icons:openai",
+  "Storybook": "logos:storybook-icon",
+  "ShadCN": "simple-icons:shadcnui",
+  "Git": "logos:git-icon",
+  "GitHub": "mdi:github",
+  "REST APIs": "mdi:api",
+  "Documentation": "mdi:file-document-outline",
+  "Conventional Commits": "mdi:source-commit",
+  "Stripe": "logos:stripe",
+  "Sanity": "logos:sanity",
+  "Prisma": "logos:prisma",
+  "SQLite": "logos:sqlite",
+  "JWT": "logos:jwt-icon",
+  "jsPDF": "mdi:file-pdf-box",
+  "Developer Tools": "mdi:tools",
+  "Chart.js": "logos:chartjs",
+  "Firebase": "logos:firebase",
+};
+
+export const CATEGORY_ACCENTS: Record<string, GlassAccent> = {
+  enterprise: "cyan",
+  saas: "purple",
+  ecommerce: "amber",
+  fintech: "emerald",
+  healthcare: "emerald",
+  ai: "purple",
+  tools: "cyan",
+  "open-source": "emerald",
+};
+
+export const PROJECTS_HEADING = {
+  label: "Projects",
+  title: "Work that delivers results",
+  description: "Enterprise solutions with measurable impact and personal projects showcasing technical exploration.",
+} as const;

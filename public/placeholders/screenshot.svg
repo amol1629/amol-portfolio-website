@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="window" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#111118"/>
+      <stop offset="100%" style="stop-color:#1a1a28"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+
+  <!-- Browser window -->
+  <rect x="60" y="40" width="1160" height="640" rx="12" fill="url(#window)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+  <!-- Browser chrome -->
+  <rect x="60" y="40" width="1160" height="40" rx="12" fill="rgba(255,255,255,0.05)"/>
+  <circle cx="90" cy="60" r="6" fill="#ff5f57"/>
+  <circle cx="115" cy="60" r="6" fill="#febc2e"/>
+  <circle cx="140" cy="60" r="6" fill="#28c840"/>
+
+  <!-- URL bar -->
+  <rect x="200" y="50" width="400" height="20" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="220" y="64" fill="rgba(255,255,255,0.3)" font-family="system-ui, sans-serif" font-size="11">https://example.com</text>
+
+  <!-- Content area -->
+  <rect x="80" y="100" width="1120" height="560" rx="8" fill="rgba(0,212,255,0.03)"/>
+
+  <!-- UI mockup elements -->
+  <rect x="100" y="130" width="250" height="16" rx="8" fill="rgba(255,255,255,0.1)"/>
+  <rect x="100" y="160" width="180" height="10" rx="5" fill="rgba(255,255,255,0.05)"/>
+
+  <rect x="100" y="200" width="500" height="200" rx="8" fill="rgba(255,255,255,0.03)"/>
+  <rect x="620" y="200" width="560" height="200" rx="8" fill="rgba(255,255,255,0.02)"/>
+
+  <rect x="100" y="420" width="1080" height="120" rx="8" fill="rgba(255,255,255,0.02)"/>
+  <rect x="100" y="560" width="300" height="80" rx="8" fill="rgba(255,255,255,0.02)"/>
+  <rect x="420" y="560" width="300" height="80" rx="8" fill="rgba(255,255,255,0.02)"/>
+  <rect x="740" y="560" width="300" height="80" rx="8" fill="rgba(255,255,255,0.02)"/>
+
+  <!-- Label -->
+  <text x="640" y="350" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="system-ui, sans-serif" font-size="28" font-weight="500">Screenshot</text>
+  <text x="640" y="385" text-anchor="middle" fill="rgba(0,212,255,0.4)" font-family="system-ui, sans-serif" font-size="14">PLACEHOLDER</text>
+</svg>

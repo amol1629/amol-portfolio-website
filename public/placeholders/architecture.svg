@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0.1"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:0.1"/>
+    </linearGradient>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="rgba(0,212,255,0.5)"/>
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+
+  <!-- Grid pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="1"/>
+  </pattern>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Top layer boxes -->
+  <rect x="100" y="80" width="200" height="100" rx="12" fill="url(#cyan)" stroke="rgba(0,212,255,0.3)" stroke-width="1"/>
+  <text x="200" y="135" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="system-ui, sans-serif" font-size="16" font-weight="500">Frontend</text>
+
+  <rect x="500" y="80" width="200" height="100" rx="12" fill="url(#purple)" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+  <text x="600" y="135" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="system-ui, sans-serif" font-size="16" font-weight="500">API Layer</text>
+
+  <rect x="900" y="80" width="200" height="100" rx="12" fill="url(#cyan)" stroke="rgba(0,212,255,0.3)" stroke-width="1"/>
+  <text x="1000" y="135" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="system-ui, sans-serif" font-size="16" font-weight="500">Services</text>
+
+  <!-- Middle layer -->
+  <rect x="300" y="280" width="600" height="120" rx="12" fill="url(#purple)" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+  <text x="600" y="345" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="system-ui, sans-serif" font-size="18" font-weight="500">Application Core</text>
+
+  <!-- Bottom layer boxes -->
+  <rect x="150" y="500" width="180" height="90" rx="12" fill="url(#cyan)" stroke="rgba(0,212,255,0.3)" stroke-width="1"/>
+  <text x="240" y="550" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="system-ui, sans-serif" font-size="14">Database</text>
+
+  <rect x="410" y="500" width="180" height="90" rx="12" fill="url(#purple)" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+  <text x="500" y="550" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="system-ui, sans-serif" font-size="14">Cache</text>
+
+  <rect x="670" y="500" width="180" height="90" rx="12" fill="url(#cyan)" stroke="rgba(0,212,255,0.3)" stroke-width="1"/>
+  <text x="760" y="550" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="system-ui, sans-serif" font-size="14">External APIs</text>
+
+  <rect x="930" y="500" width="180" height="90" rx="12" fill="url(#purple)" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+  <text x="1020" y="550" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="system-ui, sans-serif" font-size="14">CDN</text>
+
+  <!-- Connection lines -->
+  <line x1="200" y1="180" x2="400" y2="280" stroke="rgba(0,212,255,0.3)" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="600" y1="180" x2="600" y2="280" stroke="rgba(124,58,237,0.3)" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="1000" y1="180" x2="800" y2="280" stroke="rgba(0,212,255,0.3)" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <line x1="400" y1="400" x2="240" y2="500" stroke="rgba(0,212,255,0.3)" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="500" y1="400" x2="500" y2="500" stroke="rgba(124,58,237,0.3)" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="700" y1="400" x2="760" y2="500" stroke="rgba(0,212,255,0.3)" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="800" y1="400" x2="1020" y2="500" stroke="rgba(124,58,237,0.3)" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Label -->
+  <text x="600" y="700" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="system-ui, sans-serif" font-size="24" font-weight="500">Architecture Diagram</text>
+  <text x="600" y="735" text-anchor="middle" fill="rgba(0,212,255,0.4)" font-family="system-ui, sans-serif" font-size="14">PLACEHOLDER</text>
+</svg>
