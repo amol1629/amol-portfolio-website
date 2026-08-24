@@ -53,7 +53,7 @@ export default function RootLayout({
           <ClientOnlyEffects />
           <ScrollProgress />
           <HeaderVariant5 />
-          <main id="main-content" className="flex-1 pt-6 md:pt-8 lg:pt-10">
+          <main id="main-content" className="flex-1 pt-16">
             {children}
           </main>
           <Footer />
