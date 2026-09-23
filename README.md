@@ -1,141 +1,154 @@
-<a id="top"></a>
-
-<div align="center">
-  <a href="https://amol-portfolio-website.vercel.app">
-    <img src="./public/images/hero-bg.jpg" alt="Amol Rathod portfolio preview" width="100%" />
-  </a>
-
-  <br />
-  <br />
-
-  <img src="https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=600&size=26&duration=2800&pause=900&color=06B6D4&center=true&vCenter=true&width=640&lines=AMOL+RATHOD+%E2%80%94+PORTFOLIO;Technical+Consultant+%26+Frontend+Specialist;Designing+digital+experiences+that+feel+effortless." alt="Animated introduction" />
-
-  <p>
-    An immersive, motion-led portfolio for <strong>thoughtful interfaces</strong>,<br />
-    scalable frontend systems, and work that earns a second look.
-  </p>
-
-  <p>
-    <a href="https://amol-portfolio-website.vercel.app"><img src="https://img.shields.io/badge/✦_EXPLORE_THE_SITE-06B6D4?style=for-the-badge&labelColor=0B1220" alt="Explore the live portfolio" /></a>
-    <a href="mailto:rathodamol1554@gmail.com"><img src="https://img.shields.io/badge/LET'S_TALK-FFFFFF?style=for-the-badge&labelColor=0B1220&color=FFFFFF" alt="Email Amol" /></a>
-  </p>
-
-  <p>
-    <a href="https://www.linkedin.com/in/amol-rathod-44b4aa230/">LinkedIn</a>
-    &nbsp;·&nbsp;
-    <a href="https://github.com/amol1629">GitHub</a>
-    &nbsp;·&nbsp;
-    <a href="https://amol-portfolio-website.vercel.app">Live portfolio</a>
-  </p>
-</div>
-
-<br />
-
 <div align="center">
 
-| `Next.js 16` | `React 19` | `TypeScript` | `Tailwind CSS 4` | `Framer Motion` |
-| :---: | :---: | :---: | :---: | :---: |
+# Amol Rathod — Portfolio
+
+### Technical Consultant · Frontend Specialist · Digital Experience Builder
+
+A high-performance, editorial-style portfolio that brings together selected work, professional experience, certifications, writing, and clear ways to start a conversation.
+
+[![Live site](https://img.shields.io/badge/Explore_the_portfolio-06B6D4?style=for-the-badge&logo=vercel&logoColor=white)](https://amol-portfolio-website.vercel.app)
+[![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-149ECA?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+
+[**Live Site**](https://amol-portfolio-website.vercel.app) · [**LinkedIn**](https://www.linkedin.com/in/amol-rathod-44b4aa230/) · [**GitHub**](https://github.com/amol1629) · [**Get in touch**](mailto:rathodamol1554@gmail.com)
 
 </div>
 
-## 01 / The experience
+---
 
-> **A personal portfolio with the restraint of an editorial, the energy of a product launch, and the technical foundation to match.**
+## ✦ Overview
 
-The site turns a career story into an experience worth exploring—pairing a glass-inspired visual language with intentional motion, sharp typography, and fully responsive layouts. Every route is shaped to make the work, perspective, and person behind it easy to discover.
+This repository contains the source for Amol Rathod’s personal portfolio. It is designed to feel considered rather than template-driven: fluid motion, a glass-inspired visual system, responsive layouts, and content-led pages help each case study and career milestone take center stage.
+
+> **Built for clarity, speed, and a memorable first impression.**
+
+## ✦ Experience highlights
 
 <table>
   <tr>
-    <td width="33.33%" valign="top">
-      <h3>✦ Work, in context</h3>
-      <p>Case studies move beyond thumbnails with focused project detail pages and technology-led storytelling.</p>
+    <td width="50%" valign="top">
+      <h3>◆ Focused storytelling</h3>
+      <p>Dedicated pages for projects, certifications, blog posts, and collaboration opportunities make it easy to explore the work in context.</p>
     </td>
-    <td width="33.33%" valign="top">
-      <h3>◌ Crafted to move</h3>
-      <p>Framer Motion and Lenis create an elevated, tactile feel while keeping the interface purposeful.</p>
+    <td width="50%" valign="top">
+      <h3>◇ Motion with purpose</h3>
+      <p>Framer Motion and Lenis support polished, deliberate interactions without losing sight of readability and performance.</p>
     </td>
-    <td width="33.33%" valign="top">
-      <h3>↗ Ready to be found</h3>
-      <p>Metadata, sitemap, robots configuration, and a web app manifest support a polished production presence.</p>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>✦ Responsive by default</h3>
+      <p>Layouts, navigation, and visual details are crafted to remain elegant across phones, tablets, and larger screens.</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>◈ Discoverable and deployable</h3>
+      <p>Metadata, sitemap, robots configuration, and a web app manifest are included alongside a Vercel-ready Next.js setup.</p>
     </td>
   </tr>
 </table>
 
-## 02 / Explore the world
+## ✦ Built with
+
+| Layer | Tools |
+| :--- | :--- |
+| **Framework** | Next.js 16 (App Router), React 19, TypeScript |
+| **Styling** | Tailwind CSS 4, custom global styles, glass UI primitives |
+| **Motion & UI** | Framer Motion, Lenis, Lucide React, Iconify |
+| **Quality** | ESLint, TypeScript compiler checks |
+| **Deployment** | Vercel |
+
+## ✦ Site map
 
 ```text
-HOME
- ├─ About · services · skills · experience · testimonials · contact
- ├─ /projects             Selected work and case studies
- ├─ /projects/[slug]      The detail behind each build
- ├─ /certifications       Credentials and learning milestones
- ├─ /blog                 Notes, ideas, and writing
- ├─ /blog/[slug]          Individual articles
- └─ /work-with-me         A direct path to collaborate
+/
+├── About, services, skills, experience, testimonials, and contact
+├── /projects          Selected work and case studies
+├── /projects/[slug]   Individual project details
+├── /certifications    Credentials and learning milestones
+├── /blog              Writing and ideas
+├── /blog/[slug]       Individual articles
+└── /work-with-me      Collaboration and enquiry page
 ```
 
-## 03 / Launch locally
+## ✦ Getting started
 
-**You’ll need:** Node.js 20.9+ and npm. This repository is locked with `package-lock.json`, so `npm ci` is the preferred install command.
+### Prerequisites
+
+- **Node.js 20.9+**
+- **npm** (the repository includes a `package-lock.json`)
+
+### Local setup
 
 ```bash
-# Clone
+# 1. Clone the repository
 git clone https://github.com/amol1629/amol-portfolio-website.git
 cd amol-portfolio-website
 
-# Install + run
+# 2. Install dependencies
 npm ci
+
+# 3. Start the development server
 npm run dev
 ```
 
-Open **[localhost:3000](http://localhost:3000)** and start exploring.
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-<details>
-<summary><strong>Available commands</strong></summary>
-<br />
+## ✦ Commands
 
-| Command | What it does |
+| Command | Description |
 | :--- | :--- |
-| `npm run dev` | Starts the development server with Turbopack. |
-| `npm run build` | Creates an optimized production build. |
-| `npm run start` | Serves the production build locally. |
-| `npm run lint` | Runs ESLint across the project. |
-| `npm run type-check` | Checks TypeScript without emitting files. |
-| `npm run analyze` | Builds with bundle analysis enabled. |
+| `npm run dev` | Start the local development server with Turbopack. |
+| `npm run build` | Create an optimized production build. |
+| `npm run start` | Serve the production build locally. |
+| `npm run lint` | Run ESLint across the project. |
+| `npm run type-check` | Run TypeScript without emitting files. |
+| `npm run analyze` | Build with bundle analysis enabled. |
 
-</details>
-
-## 04 / Make it yours
-
-The portfolio is deliberately organized so content and interface can evolve together—not fight each other.
+## ✦ Project structure
 
 ```text
 src/
-├── app/           → Routes, metadata, loading, and error states
-├── components/    → Layouts, shared UI, effects, glass, and page sections
-├── config/        → Identity, navigation, social links, SEO, and assets
-├── data/          → Portfolio content and supporting data
-├── hooks/         → Reusable React hooks
-├── lib/           → Utilities, animation, and performance helpers
-├── styles/        → Theme and styling foundations
-└── types/         → Shared TypeScript definitions
+├── app/           # App Router routes, metadata, loading, and error states
+├── components/    # Layout, shared UI, effects, glass, and section components
+├── config/        # Site identity, navigation, social, SEO, and asset settings
+├── data/          # Portfolio content and supporting data
+├── hooks/         # Reusable React hooks
+├── lib/           # Utilities, animation, and performance helpers
+├── styles/        # Shared theme and styling foundations
+└── types/         # Shared TypeScript definitions
+public/
+├── images/        # Portfolio, project, and certification imagery
+├── fonts/         # Self-hosted Satoshi font files
+└── pdfs/          # Resume and certification documents
 ```
 
-Start with [`src/config/site.ts`](src/config/site.ts) for the name, title, contact email, canonical URL, and primary links. Then tailor navigation in [`src/config/navigation.ts`](src/config/navigation.ts) and profiles in [`src/config/social.ts`](src/config/social.ts).
+## ✦ Customizing the portfolio
 
-## 05 / Ship it
+Most identity-level details live in a single place. Update [`src/config/site.ts`](src/config/site.ts) to change the portfolio name, professional title, contact email, canonical URL, and primary links. Navigation and social profiles are maintained in [`src/config/navigation.ts`](src/config/navigation.ts) and [`src/config/social.ts`](src/config/social.ts).
 
-Built for Vercel. Import the GitHub repository and keep the default Next.js settings:
+Content is intentionally organized alongside its feature areas, so projects, certifications, experience, testimonials, and page-level sections can evolve without turning the application into a single large content file.
+
+## ✦ Deployment
+
+The portfolio is optimized for deployment on Vercel. Push the repository to GitHub, import it into Vercel, and use the default Next.js build settings:
 
 ```text
-Install command  → npm ci
-Build command    → npm run build
+Build command:  npm run build
+Install command: npm ci
 ```
 
+The live deployment is available at [amol-portfolio-website.vercel.app](https://amol-portfolio-website.vercel.app).
+
+---
+
 <div align="center">
-  <br />
-  <a href="https://amol-portfolio-website.vercel.app"><strong>See the live experience&nbsp; →</strong></a>
-  <br />
-  <br />
-  <sub>Designed and built by <a href="https://github.com/amol1629">Amol Rathod</a> · <a href="#top">Back to top ↑</a></sub>
+
+**Interested in building something thoughtful?**
+
+[Start a conversation →](mailto:rathodamol1554@gmail.com)
+
+<sub>Designed and built by <a href="https://github.com/amol1629">Amol Rathod</a>.</sub>
+
 </div>
