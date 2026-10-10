@@ -28,9 +28,12 @@ export function LiquidGlassCard({
     lg: "p-8",
   };
 
+  const stableBackground = "rgba(5, 4, 8, 0.18)";
+  const hoverBackground = "rgba(22, 12, 41, 0.22)";
+
   return (
     <div
-      className={`group/card relative overflow-hidden rounded-2xl transition-all duration-300 ease-out hover:-translate-y-[3px] hover:shadow-[0_12px_32px_rgba(0,0,0,0.25),0_4px_12px_rgba(0,0,0,0.15)] ${className}`}
+      className={`group/card relative isolate overflow-hidden rounded-2xl bg-[rgba(5,4,8,0.18)] transition-[transform,box-shadow,background-color] duration-300 ease-out hover:-translate-y-[3px] hover:bg-[rgba(22,12,41,0.22)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.25),0_4px_12px_rgba(0,0,0,0.15)] ${className}`}
       onClick={onClick}
       role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}
@@ -39,7 +42,13 @@ export function LiquidGlassCard({
     >
       {/* Background layer (replaces ::before) - GPU optimized */}
       <div
-        className="absolute inset-0 rounded-[inherit] z-0 bg-[#05040814] backdrop-blur-[10px] backdrop-saturate-150 transition-[background] duration-300 group-hover/card:bg-[rgba(22,12,41,0.164)] will-change-[backdrop-filter] transform-gpu [contain:paint]"
+        className="absolute inset-0 rounded-[inherit] z-0 backdrop-blur-[10px] backdrop-saturate-150 transition-colors duration-300 will-change-[backdrop-filter] transform-gpu [contain:paint]"
+        style={{ backgroundColor: stableBackground }}
+      />
+
+      <div
+        className="absolute inset-0 rounded-[inherit] z-0 opacity-0 transition-opacity duration-300 group-hover/card:opacity-100 pointer-events-none"
+        style={{ backgroundColor: hoverBackground }}
       />
 
       {/* Border layer (replaces ::after) */}

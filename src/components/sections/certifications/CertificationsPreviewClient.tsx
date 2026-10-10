@@ -47,7 +47,7 @@ const ProviderBadge = memo(function ProviderBadge({
   variants,
 }: ProviderBadgeProps): ReactNode {
   return (
-    <Link href={`/certifications?provider=${provider}`} prefetch scroll={false}>
+    <Link href={`/certifications?provider=${provider}`} prefetch>
       <motion.div
         variants={variants}
         whileHover={{ scale: 1.08, y: -8 }}
