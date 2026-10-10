@@ -4,6 +4,7 @@ export type SkillDomain =
   | "cloud-microsoft"
   | "ai-ml"
   | "architecture"
+  | "cms-dxp"
   | "testing"
   | "tools";
 
