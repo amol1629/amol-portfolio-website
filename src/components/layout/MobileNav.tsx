@@ -5,11 +5,22 @@ import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
-import { useActiveSection } from "@/hooks";
+import { useActiveSection, useMounted } from "@/hooks";
 import { mainNavLinks, ctaLink, socialLinks, siteConfig } from "@/config";
 import Link from "next/link";
 import Image from "next/image";
-import { X, Home, User, Briefcase, Code2, FolderKanban, Award, Mail, Sparkles } from "lucide-react";
+import {
+  X,
+  Home,
+  UserRound,
+  Handshake,
+  Braces,
+  FolderKanban,
+  BriefcaseBusiness,
+  BadgeCheck,
+  Send,
+  Sparkles,
+} from "lucide-react";
 import { Icon } from "@iconify/react";
 import type { ReactNode } from "react";
 
@@ -21,13 +32,13 @@ const socialIconMap: Record<string, string> = {
 
 const navIcons: Record<string, typeof Home> = {
   Home,
-  About: User,
-  Services: Briefcase,
-  Skills: Code2,
+  About: UserRound,
+  Services: Handshake,
+  Skills: Braces,
   Projects: FolderKanban,
-  Experience: Award,
-  Certifications: Award,
-  Contact: Mail,
+  Experience: BriefcaseBusiness,
+  Certifications: BadgeCheck,
+  Contact: Send,
 };
 
 interface MobileNavTriggerProps {
@@ -36,11 +47,7 @@ interface MobileNavTriggerProps {
 
 export function MobileNavTrigger({ className }: MobileNavTriggerProps): ReactNode {
   const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useMounted();
 
   const openNav = useCallback(() => setIsOpen(true), []);
   const closeNav = useCallback(() => setIsOpen(false), []);
@@ -292,4 +299,3 @@ function MobileNavOverlay({ onClose }: MobileNavOverlayProps): ReactNode {
     </>
   );
 }
-

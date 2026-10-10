@@ -47,6 +47,10 @@ export const skills: Skill[] = [
   { id: "performance", name: "Performance Optimization", domain: "architecture", level: "expert", years: 5 },
   { id: "scalability", name: "Scalability Patterns", domain: "architecture", level: "advanced", years: 4 },
 
+  // CMS & DXP - Proficient (2+ years)
+  { id: "optimizely", name: "Optimizely", domain: "cms-dxp", level: "proficient", years: 2 },
+  { id: "sitecore", name: "Sitecore", domain: "cms-dxp", level: "proficient", years: 2 },
+
   // Testing - Expert/Advanced (4-5 years)
   { id: "jest", name: "Jest", domain: "testing", level: "expert", years: 5 },
   { id: "rtl", name: "React Testing Library", domain: "testing", level: "expert", years: 5 },
@@ -85,6 +89,11 @@ export const skillDomainGroups: SkillDomainGroup[] = [
     domain: "architecture",
     label: "Architecture",
     skills: skills.filter((s) => s.domain === "architecture"),
+  },
+  {
+    domain: "cms-dxp",
+    label: "CMS & DXP",
+    skills: skills.filter((s) => s.domain === "cms-dxp"),
   },
   {
     domain: "testing",
