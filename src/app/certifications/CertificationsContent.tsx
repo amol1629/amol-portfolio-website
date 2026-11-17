@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 // Motion used only for modal animations
-import { SectionWrapper, SectionHeading, LiquidGlassCard, Badge, EmptyState, Button, glassAccentColors, type GlassAccent } from "@/components/shared";
+import { SectionWrapper, SectionHeading, Breadcrumbs, LiquidGlassCard, Badge, EmptyState, Button, glassAccentColors, type GlassAccent } from "@/components/shared";
 import Image from "next/image";
 import { certifications } from "@/data";
 import type { CertificationProvider, Certification } from "@/types";
@@ -177,6 +177,7 @@ export function CertificationsContent(): ReactNode {
 
   return (
     <SectionWrapper className="pt-24 pb-20">
+      <Breadcrumbs items={[{ label: "Certifications" }]} className="mb-8" />
       <SectionHeading
         label="Certifications"
         title="Professional credentials"
